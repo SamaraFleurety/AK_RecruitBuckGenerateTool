@@ -1,0 +1,44 @@
+>Mode:1<0:正常模式 1:重置贴图
+>EnglishName:Angelina<
+>ChineseName:菲亚梅塔<
+>AgentType:Supporter<Caster Defender Guard Medic Sniper Specialist Supporter Vanguard
+>Age:20<
+>BackStory:1 1<
+>ChildName:拉特兰的黎博利<
+>ChildDesc:
+菲亚梅塔出生于拉特兰，在家乡的学校毕业后成为了公证所的一员。
+据说菲亚梅塔在她当时的班级里成绩是最好的。
+<
+>AdultName:拉特兰公证所高级特派员<
+>AdultDesc:
+菲亚梅塔在加入公证所之后原本同安多恩和他手下的小队一起行动，但是在某些变故后她现在的任务变成了监视莫斯提马。
+<
+>BodyType:Thin<Thin Hulk Fat Male Female
+>EngDesc:
+FIXMEDESC
+<
+>ChinDesc:
+拉特兰公证所高级特派员菲亚梅塔，只要下定目标，就一定会坚持到底。
+别问她的代号，否则她会抽空把你也干掉。
+<
+>Skills:
+Animals:1 0
+Artistic:14 2
+Construction:4 0
+Cooking:4 0
+Crafting:12 1
+Intellectual:11 0
+Medicine:1 0
+Melee:11 1
+Mining:0 0
+Plants:1 0
+Shooting:15 2
+Social:8 0
+<
+>Traits:
+Personal 2
+Abrasive
+Industriousness 1
+Beauty 1
+<
+>Thought:-22 123 233<
