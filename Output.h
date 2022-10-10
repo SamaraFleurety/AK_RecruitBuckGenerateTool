@@ -3,6 +3,6 @@
 
 #include "TypeDef.h"
 
-void FileProcess(Settings settings);
+void FileProcess(Settings* settings);
 
 #endif

@@ -10,10 +10,10 @@ void bodyTypeCheck(const char bodyType[]);
 
 void getTraits(RBSRoot* traitsroot, FILE* config);
 
-Settings readConfig(Settings settings);
+void readConfig(Settings* settings);
 
 bool HasHat();
 
-Settings InitializeSettings();
+Settings* InitializeSettings();
 
 #endif

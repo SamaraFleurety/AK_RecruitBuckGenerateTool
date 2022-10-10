@@ -75,15 +75,15 @@ void NewTraitGenerate(FILE *traitFP, FILE *thoughtFP, int degree, int *thought, 
 	NewTraitGenerate(traitFP, thoughtFP, degree - 1, thought, name);
 }
 
-void FileProcess(Settings settings) {
+void FileProcess(Settings* settings) {
 	UTF8ThingsType UTF8Type;
-	rewind(settings.outputFile.UTF8ThingsTypeFile);
-	fscanf(settings.outputFile.UTF8ThingsTypeFile, "%s %s %s %s", UTF8Type.apparel, UTF8Type.weapon, UTF8Type.hair, UTF8Type.hat);
+	rewind(settings->outputFile.UTF8ThingsTypeFile);
+	fscanf(settings->outputFile.UTF8ThingsTypeFile, "%s %s %s %s", UTF8Type.apparel, UTF8Type.weapon, UTF8Type.hair, UTF8Type.hat);
 
 	//----------生成招募干员。本体是全英语，而翻译是中文。
 	printf("正在处理 OperatorDef.xml\n");
-	printf("\t正在处理 干员:%s\n", settings.agentName.English);
-	fprintf(settings.outputFile.outputFile[f_operator],
+	printf("\t正在处理 干员:%s\n", settings->agentName.English);
+	fprintf(settings->outputFile.outputFile[f_operator],
 		"\t<AK_DLL.OperatorDef ParentName=\"AK_RecruitBase_%s\">\n"
 		"\t\t<defName>AK_Recruit_%s</defName>\n"
 		"\t\t<name>%s</name>\n"
@@ -91,31 +91,31 @@ void FileProcess(Settings settings) {
 		"\t\t<description>%s</description>\n"
 		"\t\t<weapon>AK_Weapon_%s</weapon>\n"
 		"\t\t<hair>AK_Hair_%s</hair>\n"
-		"\t\t<apparels>\n\t\t\t<li>AK_Apparel_%s</li>\n", settings.agentType.Upper, settings.agentName.English, settings.agentName.English, settings.agentName.English, settings.descEng , settings.agentName.English, settings.agentName.English, settings.agentName.English);
-	if (settings.has[hat] == true) {
-		fprintf(settings.outputFile.outputFile[f_operator],
-			"\t\t\t<li>AK_Hat_%s</li>\n", settings.agentName.English);
+		"\t\t<apparels>\n\t\t\t<li>AK_Apparel_%s</li>\n", settings->agentType.Upper, settings->agentName.English, settings->agentName.English, settings->agentName.English, settings->descEng , settings->agentName.English, settings->agentName.English, settings->agentName.English);
+	if (settings->has[hat] == true) {
+		fprintf(settings->outputFile.outputFile[f_operator],
+			"\t\t\t<li>AK_Hat_%s</li>\n", settings->agentName.English);
 	}
-	fprintf(settings.outputFile.outputFile[f_operator],
+	fprintf(settings->outputFile.outputFile[f_operator],
 		"\t\t</apparels>\n"
 		"\t\t<stand>UI/Image/%s/%sStand</stand>\n"
-		"\t\t<headPortrait>UI/Image/%s/%sPortrait</headPortrait>\n", settings.agentType.Upper, settings.agentName.English, settings.agentType.Upper, settings.agentName.English);
-	if (strcmp(settings.bodyType, "Thin") != 0) {
-		fprintf(settings.outputFile.outputFile[f_operator],
-			"\t\t<bodyTypeDef>%s</bodyTypeDef>\n", settings.bodyType);
+		"\t\t<headPortrait>UI/Image/%s/%sPortrait</headPortrait>\n", settings->agentType.Upper, settings->agentName.English, settings->agentType.Upper, settings->agentName.English);
+	if (strcmp(settings->bodyType, "Thin") != 0) {
+		fprintf(settings->outputFile.outputFile[f_operator],
+			"\t\t<bodyTypeDef>%s</bodyTypeDef>\n", settings->bodyType);
 	}
 
-	fprintf(settings.outputFile.outputFile[f_operator], "\t\t<traits>\n");
-	GiveOperatorTrait(settings.outputFile.outputFile[f_operator], settings.traitsRoot->node, settings.agentName.English);
-	fprintf(settings.outputFile.outputFile[f_operator], "\t\t</traits>\n");
+	fprintf(settings->outputFile.outputFile[f_operator], "\t\t<traits>\n");
+	GiveOperatorTrait(settings->outputFile.outputFile[f_operator], settings->traitsRoot->node, settings->agentName.English);
+	fprintf(settings->outputFile.outputFile[f_operator], "\t\t</traits>\n");
 
 
-	if (settings.age != 16) fprintf(settings.outputFile.outputFile[f_operator], "\t\t<age>%d</age>\n", settings.age);
-	if (settings.story.backstory[0] == 1)fprintf(settings.outputFile.outputFile[f_operator], "\t\t<childHood>AK_BackStory_%s_Child</childHood>\n", settings.agentName.English);
-	if (settings.age > 16) fprintf(settings.outputFile.outputFile[f_operator], "\t\t<adultHood>AK_BackStory_%s_Adult</adultHood>\n", (settings.story.backstory[1] == 1 ? settings.agentName.English : "Unknown"));
+	if (settings->age != 16) fprintf(settings->outputFile.outputFile[f_operator], "\t\t<age>%d</age>\n", settings->age);
+	if (settings->story.backstory[0] == 1)fprintf(settings->outputFile.outputFile[f_operator], "\t\t<childHood>AK_BackStory_%s_Child</childHood>\n", settings->agentName.English);
+	if (settings->age > 16) fprintf(settings->outputFile.outputFile[f_operator], "\t\t<adultHood>AK_BackStory_%s_Adult</adultHood>\n", (settings->story.backstory[1] == 1 ? settings->agentName.English : "Unknown"));
 	
-	#define _SS settings.skills
-	fprintf(settings.outputFile.outputFile[f_operator], "\t\t<skills>\n"
+	#define _SS settings->skills
+	fprintf(settings->outputFile.outputFile[f_operator], "\t\t<skills>\n"
 		"\t\t\t<li>\n\t\t\t\t<skill>Animals</skill>\n\t\t\t\t<level>%d</level>\n\t\t\t\t<fireLevel>%d</fireLevel>\n\t\t\t</li>\n"
 		"\t\t\t<li>\n\t\t\t\t<skill>Artistic</skill>\n\t\t\t\t<level>%d</level>\n\t\t\t\t<fireLevel>%d</fireLevel>\n\t\t\t</li>\n"
 		"\t\t\t<li>\n\t\t\t\t<skill>Construction</skill>\n\t\t\t\t<level>%d</level>\n\t\t\t\t<fireLevel>%d</fireLevel>\n\t\t\t</li>\n"
@@ -140,34 +140,34 @@ void FileProcess(Settings settings) {
 		_SS.plants, _SS.plantsFire,
 		_SS.shoot, _SS.shootFire,
 		_SS.social, _SS.socialFire);
-	fprintf(settings.outputFile.outputFile[f_operator], "\t\t</skills>\n");
+	fprintf(settings->outputFile.outputFile[f_operator], "\t\t</skills>\n");
 
-	fprintf(settings.outputFile.outputFile[f_operator],
+	fprintf(settings->outputFile.outputFile[f_operator],
 		"\t</AK_DLL.OperatorDef>\n\n");
 		
 	printf("处理完成.\n");
 
 	//----------翻译
 	printf("正在处理 OperatorDef.xml 的翻译文件.\n");
-	printf("\t正在处理 干员%s\n", settings.agentName.English);
-	fprintf(settings.outputFile.outputFileTranslate[f_operator],
+	printf("\t正在处理 干员%s\n", settings->agentName.English);
+	fprintf(settings->outputFile.outputFileTranslate[f_operator],
 		"\t<AK_Recruit_%s.name>%s</AK_Recruit_%s.name>\n"
 		"\t<AK_Recruit_%s.nickname>%s</AK_Recruit_%s.nickname>\n"
-		"\t<AK_Recruit_%s.description>%s</AK_Recruit_%s.description>\n\n", settings.agentName.English, settings.agentName.Chinese, settings.agentName.English, settings.agentName.English, settings.agentName.Chinese, settings.agentName.English, settings.agentName.English, settings.descChi, settings.agentName.English);
+		"\t<AK_Recruit_%s.description>%s</AK_Recruit_%s.description>\n\n", settings->agentName.English, settings->agentName.Chinese, settings->agentName.English, settings->agentName.English, settings->agentName.Chinese, settings->agentName.English, settings->agentName.English, settings->descChi, settings->agentName.English);
 		
 	printf("处理完成.\n");
 
 	//---------------生成服装。本体是中文，而翻译是英语，下同。-------------------------------------------------------------------------------------
 	printf("正在处理 ApparelDef.xml\n");
-	printf("\t正在处理 干员:%s\n", settings.agentName.English); 
+	printf("\t正在处理 干员:%s\n", settings->agentName.English); 
 	char temp[100] = "\0";
-	if (settings.has[apparelDropped]) {
-		sprintf(temp, "%s/%s", settings.agentType.Upper, settings.agentName.English);
+	if (settings->has[apparelDropped]) {
+		sprintf(temp, "%s/%s", settings->agentType.Upper, settings->agentName.English);
 	}
 	else {
 		strcpy(temp, "GApparel");
 	}
-	fprintf(settings.outputFile.outputFile[f_apparel],
+	fprintf(settings->outputFile.outputFile[f_apparel],
 		"\t<ThingDef ParentName=\"AK_ArmorBase_%s\">\n"
 		"\t\t<defName>AK_Apparel_%s</defName>\n"
 		"\t\t<label>%s%s</label>\n"
@@ -178,28 +178,28 @@ void FileProcess(Settings settings) {
 		"\t\t<apparel>\n"
 		"\t\t\t<wornGraphicPath>Things/AK_Agents/%s/%s</wornGraphicPath>\n"
 		"\t\t</apparel>\n"
-		"\t</ThingDef>\n\n", settings.agentType.Upper, settings.agentName.English, settings.agentName.Chinese, UTF8Type.apparel, temp, settings.agentType.Upper, settings.agentName.English
+		"\t</ThingDef>\n\n", settings->agentType.Upper, settings->agentName.English, settings->agentName.Chinese, UTF8Type.apparel, temp, settings->agentType.Upper, settings->agentName.English
 	);
 
 	printf("处理完成.\n");
 	
 	printf("正在处理 ApparelDef.xml 的翻译文件\n");
-		printf("\t正在处理 干员:%s\n", settings.agentName.English);
-		fprintf(settings.outputFile.outputFileTranslate[f_apparel],
-			"\t<AK_Apparel_%s.label>%s's Apparel</AK_Apparel_%s.label>\n\n", settings.agentName.English, settings.agentName.English, settings.agentName.English);
+		printf("\t正在处理 干员:%s\n", settings->agentName.English);
+		fprintf(settings->outputFile.outputFileTranslate[f_apparel],
+			"\t<AK_Apparel_%s.label>%s's Apparel</AK_Apparel_%s.label>\n\n", settings->agentName.English, settings->agentName.English, settings->agentName.English);
 		
 	printf("处理完成.\n");
 
 	//帽子
-	if (settings.has[hat] == true) {
-		if (settings.has[hatDropped]) {
-			sprintf(temp, "%sH", settings.agentName.English);
+	if (settings->has[hat] == true) {
+		if (settings->has[hatDropped]) {
+			sprintf(temp, "%sH", settings->agentName.English);
 		}
 		else {
 			strcpy(temp, "GHat");
 		}
 		printf("正在处理帽子\n");
-		fprintf(settings.outputFile.outputFile[f_hat],
+		fprintf(settings->outputFile.outputFile[f_hat],
 			"\t<ThingDef ParentName=\"AK_HatBase\">\n"
 			"\t\t<defName>AK_Hat_%s</defName>\n"
 			"\t\t<label>%s%s</label>\n"
@@ -211,17 +211,17 @@ void FileProcess(Settings settings) {
 			"\t\t\t<wornGraphicPath>Things/AK_Agents/HatAccessory/%sH</wornGraphicPath>\n"
 			"\t\t</apparel>\n"
 			"\t</ThingDef>\n\n"
-			, settings.agentName.English, settings.agentName.Chinese, UTF8Type.hat, temp, settings.agentName.English);
+			, settings->agentName.English, settings->agentName.Chinese, UTF8Type.hat, temp, settings->agentName.English);
 
-		fprintf(settings.outputFile.outputFileTranslate[f_hat],
+		fprintf(settings->outputFile.outputFileTranslate[f_hat],
 			"\t<AK_Hat_%s.label>%s's Hat</AK_Hat_%s.label>\n\n"
-			, settings.agentName.English, settings.agentName.English, settings.agentName.English);
+			, settings->agentName.English, settings->agentName.English, settings->agentName.English);
 		printf("处理完成.\n");
 	}
 
 //------------武器----------------------------------------------------------------------------
 	printf("正在处理 WeaponDef.xml\n");
-		fprintf(settings.outputFile.outputFile[f_weapon],
+		fprintf(settings->outputFile.outputFile[f_weapon],
 			"\t<ThingDef ParentName=\"AK_WeaponBase_%s\">\n"
 			"\t\t<defName>AK_Weapon_%s</defName>\n"
 			"\t\t<label>%s%s</label>\n"
@@ -229,51 +229,51 @@ void FileProcess(Settings settings) {
 			"\t\t\t<texPath>Things/AK_Agents/Weapon/%s/%sW</texPath>\n"
 			"\t\t\t<graphicClass>Graphic_Single</graphicClass>\n"
 			"\t\t</graphicData>\n"
-			"\t</ThingDef>\n\n", settings.agentType.Upper, settings.agentName.English, settings.agentName.Chinese, UTF8Type.weapon, settings.agentType.Upper, settings.agentName.English);
+			"\t</ThingDef>\n\n", settings->agentType.Upper, settings->agentName.English, settings->agentName.Chinese, UTF8Type.weapon, settings->agentType.Upper, settings->agentName.English);
 	printf("处理完成.\n");
 
 	printf("正在处理 WeaponDef.xml 的翻译文件\n");
-		fprintf(settings.outputFile.outputFileTranslate[f_weapon],
-			"\t<AK_Weapon_%s.label>%s's Weapon</AK_Weapon_%s.label>\n\n", settings.agentName.English, settings.agentName.English, settings.agentName.English);
+		fprintf(settings->outputFile.outputFileTranslate[f_weapon],
+			"\t<AK_Weapon_%s.label>%s's Weapon</AK_Weapon_%s.label>\n\n", settings->agentName.English, settings->agentName.English, settings->agentName.English);
 	printf("处理完成.\n");
 	
 //-----发型-------------------------------------------------
 	printf("正在处理 HairDef.xml\n");
-	fprintf(settings.outputFile.outputFile[f_hair],
+	fprintf(settings->outputFile.outputFile[f_hair],
 			"\t<HairDef ParentName=\"AK_HairBaseF\">\n"
 			"\t\t<defName>AK_Hair_%s</defName>\n"
 			"\t\t<label>%s%s</label>\n"
 			"\t\t<texPath>Things/Hair/%s/%s</texPath>\n"
-			"\t</HairDef>\n\n", settings.agentName.English, settings.agentName.Chinese, UTF8Type.hair, settings.agentType.Upper, settings.agentName.English);
+			"\t</HairDef>\n\n", settings->agentName.English, settings->agentName.Chinese, UTF8Type.hair, settings->agentType.Upper, settings->agentName.English);
 	printf("处理完成.\n");
 		
 	printf("正在处理 HairDef.xml 的翻译文件\n");
-		printf("\t正在处理 干员:%s\n", settings.agentName.English);
-		fprintf(settings.outputFile.outputFileTranslate[f_hair],
-			"\t<AK_Hair_%s.label>%s's Hair</AK_Hair_%s.label>\n\n", settings.agentName.English, settings.agentName.English, settings.agentName.English);
+		printf("\t正在处理 干员:%s\n", settings->agentName.English);
+		fprintf(settings->outputFile.outputFileTranslate[f_hair],
+			"\t<AK_Hair_%s.label>%s's Hair</AK_Hair_%s.label>\n\n", settings->agentName.English, settings->agentName.English, settings->agentName.English);
 	printf("处理完成.\n");
 
 	//背景故事
 	printf("正在处理 背景故事\n");
-	if (settings.story.backstory[0] == 1) {
-		fprintf(settings.outputFile.outputFile[f_backstory],
+	if (settings->story.backstory[0] == 1) {
+		fprintf(settings->outputFile.outputFile[f_backstory],
 			"\t<StoriesRetold.SRBackstoryDef>\n"
 			"\t\t<defName>AK_BackStory_%s_Child</defName>\n"
 			"\t\t<slot>Childhood</slot>\n"
 			"\t\t<title>%s</title>\n"
 			"\t\t<baseDesc>%s</baseDesc>\n"
 			"\t\t<bodyTypeGlobal>Thin</bodyTypeGlobal>\n"
-			"\t</StoriesRetold.SRBackstoryDef>\n\n", settings.agentName.English, settings.story.childName, settings.story.childDesc);
+			"\t</StoriesRetold.SRBackstoryDef>\n\n", settings->agentName.English, settings->story.childName, settings->story.childDesc);
 	}
-	if (settings.story.backstory[1] == 1) {
-		fprintf(settings.outputFile.outputFile[f_backstory],
+	if (settings->story.backstory[1] == 1) {
+		fprintf(settings->outputFile.outputFile[f_backstory],
 			"\t<StoriesRetold.SRBackstoryDef>\n"
 			"\t\t<defName>AK_BackStory_%s_Adult</defName>\n"
 			"\t\t<slot>Adulthood</slot>\n"
 			"\t\t<title>%s</title>\n"
 			"\t\t<baseDesc>%s</baseDesc>\n"
 			"\t\t<bodyTypeGlobal>Thin</bodyTypeGlobal>\n"
-			"\t</StoriesRetold.SRBackstoryDef>\n\n", settings.agentName.English, settings.story.adultName, settings.story.adultDesc);
+			"\t</StoriesRetold.SRBackstoryDef>\n\n", settings->agentName.English, settings->story.adultName, settings->story.adultDesc);
 	}
 	printf("处理完成.\n");
 
@@ -281,7 +281,7 @@ void FileProcess(Settings settings) {
 
 	//特性
 	printf("正在处理 特性\n");
-	NewTraitGenerate(settings.outputFile.outputFile[f_trait], settings.outputFile.outputFile[f_thoughts], rbts_search_returnNode(settings.traitsRoot, "Personal", 1)->degree, settings.thought, settings.agentName.English);
+	NewTraitGenerate(settings->outputFile.outputFile[f_trait], settings->outputFile.outputFile[f_thoughts], rbts_search_returnNode(settings->traitsRoot, "Personal", 1)->degree, settings->thought, settings->agentName.English);
 	printf("处理完成.\n");
 
 	//翻译。没做。

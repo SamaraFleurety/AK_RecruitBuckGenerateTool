@@ -12,6 +12,6 @@ void CreateTextureFolder(AgentType agentType);
 
 void CheckTexture(bool hasHat);
 
-void MoveTexture(Settings settings);
+void MoveTexture(Settings* settings);
 
 #endif

@@ -25,20 +25,19 @@ void CheckAll(Settings* settings) {
 }
 
 int main() {
-	//我不知道为啥用settings指针会报错。别改。
 	printf("Version.22-10-11\n");
 	PrintVoiceCount();
-	Settings settings = InitializeSettings();
-	settings.debugOverride = false;
-	CheckAll(&settings);
+	Settings* settings = InitializeSettings();
+	settings->debugOverride = false;
+	CheckAll(settings);
 
-	if (!settings.debugOverride) MoveTexture(settings);
+	if (!settings->debugOverride) MoveTexture(settings);
 
-	if (!settings.debugOverride) FileEndRemove_All(&settings);
-	AutoProcessVoicePack(&settings);
+	if (!settings->debugOverride) FileEndRemove_All(settings);
+	AutoProcessVoicePack(settings);
 	
 	FileProcess(settings);
-	FileEndRestore_All(&settings);
+	FileEndRestore_All(settings);
 
 	printf("执行完成.");
 	system("Pause");
