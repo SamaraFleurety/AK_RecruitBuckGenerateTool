@@ -3,11 +3,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include <fcntl.h>
+//#include <fcntl.h>
 #include <io.h>
 #include <direct.h>
 #include "TypeDef.h"
 #include "CheckFile.h"
+#include "AutoProcessVoicePack.h"
 //----------------------------
 void FileEndCheck(FILE* targetFile) {
 	char fileEnd[25] = "\0";
@@ -187,8 +188,8 @@ void MoveTexture(Settings settings) {
 	//char* oldName = (char*)malloc(sizeof(char) * 50);
 	char* newName = (char*)malloc(sizeof(char) * 100);
 
-	/*TextureRename(newName, "Things\\AK_Agents\\", settings.agentType.Upper, settings.agentName.English, "-1", "");
-	int i = rename(".\\input\\aa.png", newName);*/
+	TextureRename(newName, "Things\\AK_Agents\\", settings.agentType.Upper, settings.agentName.English, "-1", "");
+	rename(".\\input\\aa.png", newName);
 
 	TextureRename(newName, "Things\\AK_Agents\\", settings.agentType.Upper, settings.agentName.English, settings.bodyType, "south");
 	//FindOrigTexture(oldName, settings.bodyType, "south");
@@ -214,9 +215,9 @@ void MoveTexture(Settings settings) {
 	TextureRename(newName, "Things\\Hair\\", settings.agentType.Upper, settings.agentName.English, "-1", "_east");
 	i += rename(".\\input\\aa_eastHair.png", newName);
 
-	if (settings.hasHat == true) {
-		/*TextureRename(newName, "Things\\AK_Agents\\HatAccessory\\", "-1", settings.agentName.English, "-1", "H");
-		i += rename(".\\input\\aaH.png", newName);*/
+	if (settings.has[hat] == true) {
+		TextureRename(newName, "Things\\AK_Agents\\HatAccessory\\", "-1", settings.agentName.English, "-1", "H");
+		rename(".\\input\\aaH.png", newName);
 
 		TextureRename(newName, "Things\\AK_Agents\\HatAccessory\\", "-1", settings.agentName.English, "-1", "H_south");
 		i += rename(".\\input\\aaH_south.png", newName);
@@ -246,17 +247,17 @@ void MoveTexture(Settings settings) {
 	return;
 }
 
-void printfTraits(RBSTree rt) {
+void printTraits(RBSTree rt) {
 	if (!rt) return;
 	printf("%s %d\n", rt->string, rt->degree);
-	printfTraits(rt->left);
-	printfTraits(rt->right);
+	printTraits(rt->left);
+	printTraits(rt->right);
 	return;
 }
 
 void printOperator(Settings settings) {
 	printf("\nName: %s\n", settings.agentName.English);
-	printf("帽子: %d\n", settings.hasHat);
+	printf("帽子: %d\n", settings.has[hat]);
 	printf("Type: %s\n", settings.agentType.Upper);
 	char input = 'x';
 	if (settings.generateMode == 1) {
@@ -274,32 +275,45 @@ void printOperator(Settings settings) {
 			"Age: %d\n"
 			"BS: %d %d\n"
 			"BodyType: %s\n"
-			"Skills:\n"
-			"\t Animals: %d, FireLevel: %d\n"
-			"\t Artistic: %d, FireLevel: %d\n"
-			"\t Construction: %d, FireLevel: %d\n"
-			"\t Cooking: %d, FireLevel: %d\n"
-			"\t Crafting: %d, FireLevel: %d\n"
-			"\t Intellectual: %d, FireLevel: %d\n"
-			"\t Medicine: %d, FireLevel: %d\n"
-			"\t Melee: %d, FireLevel: %d\n"
-			"\t Mining: %d, FireLevel: %d\n"
-			"\t Plants: %d, FireLevel: %d\n"
-			"\t Shooting: %d, FireLevel: %d\n"
-			"\t Social: %d, FireLevel: %d\n", settings.age, settings.story.backstory[0], settings.story.backstory[1], settings.bodyType, 
-			_SS.animals, _SS.animalsFire,
-			_SS.art, _SS.artFire,
-			_SS.construction, _SS.constructionFire,
-			_SS.cook, _SS.cookFire,
-			_SS.craft, _SS.craftFire,
-			_SS.intellect, _SS.intellectFire,
-			_SS.medi, _SS.mediFire,
-			_SS.melee, _SS.meleeFire,
-			_SS.mining, _SS.miningFire,
-			_SS.plants, _SS.plantsFire,
-			_SS.shoot, _SS.shootFire,
-			_SS.social, _SS.socialFire);
-		printfTraits(settings.traitsRoot->node);
+			,settings.age, settings.story.backstory[0], settings.story.backstory[1], settings.bodyType
+		);
+
+		PrintVoiceCount();
+
+	#pragma region PrintSkill&Fire
+		if (false) {
+			printf(
+				"Skills:\n"
+				"\t Animals: %d, FireLevel: %d\n"
+				"\t Artistic: %d, FireLevel: %d\n"
+				"\t Construction: %d, FireLevel: %d\n"
+				"\t Cooking: %d, FireLevel: %d\n"
+				"\t Crafting: %d, FireLevel: %d\n"
+				"\t Intellectual: %d, FireLevel: %d\n"
+				"\t Medicine: %d, FireLevel: %d\n"
+				"\t Melee: %d, FireLevel: %d\n"
+				"\t Mining: %d, FireLevel: %d\n"
+				"\t Plants: %d, FireLevel: %d\n"
+				"\t Shooting: %d, FireLevel: %d\n"
+				"\t Social: %d, FireLevel: %d\n",
+				_SS.animals, _SS.animalsFire,
+				_SS.art, _SS.artFire,
+				_SS.construction, _SS.constructionFire,
+				_SS.cook, _SS.cookFire,
+				_SS.craft, _SS.craftFire,
+				_SS.intellect, _SS.intellectFire,
+				_SS.medi, _SS.mediFire,
+				_SS.melee, _SS.meleeFire,
+				_SS.mining, _SS.miningFire,
+				_SS.plants, _SS.plantsFire,
+				_SS.shoot, _SS.shootFire,
+				_SS.social, _SS.socialFire
+			);
+		}
+	#pragma endregion
+		
+		printf("Traits:\n");
+		printTraits(settings.traitsRoot->node);
 		printf("是否确认开始新增此干员，Y/N\n");
 		scanf("%c", &input);
 		if (input != 'Y' && input != 'y') {
@@ -313,20 +327,21 @@ void printOperator(Settings settings) {
 void CheckAll(Settings settings) {
 		int i = 0;
 	//检测xml文件尾
-		if (!settings.hasHat) ++i;
+		if (!settings.has[hat]) ++i;
 		for (; i < fileCnt; ++i) {
 			printf("检测%d号文件尾 ", i);
 			FileEndCheck(settings.outputFile.outputFile[i]);
+			if (i == f_voice) continue; //voiceDef不需要翻译
 			printf("检测%d号翻译文件尾 ", i);
 			FileEndCheckTranslate(settings.outputFile.outputFileTranslate[i]);
 		}
 
 		CheckTextureFolder(settings.agentType);
-		CheckTexture(settings.hasHat);
+		CheckTexture(settings.has[hat]);
 
 		printOperator(settings);
 
-		MoveTexture(settings);
+		if (!settings.debugOverride) MoveTexture(settings);
 		if (settings.generateMode == 1) {
 			printf("已完成贴图重置.");
 			AnyKeyQuit();
@@ -335,9 +350,10 @@ void CheckAll(Settings settings) {
 
 	//在检测之后移除文件尾
 		i = 0;
-		if (!settings.hasHat) ++i;
+		if (!settings.has[hat]) ++i;
 		for (; i < fileCnt; ++i) {
 			FileEndRemove(settings.outputFile.outputFile[i]);
+			if (i == f_voice) continue; //voiceDef不需要翻译
 			FileEndRemoveTranslate(settings.outputFile.outputFileTranslate[i]);
 		}
 

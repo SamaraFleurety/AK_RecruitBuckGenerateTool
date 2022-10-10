@@ -93,7 +93,7 @@ void FileProcess(Settings settings) {
 		"\t\t<weapon>AK_Weapon_%s</weapon>\n"
 		"\t\t<hair>AK_Hair_%s</hair>\n"
 		"\t\t<apparels>\n\t\t\t<li>AK_Apparel_%s</li>\n", settings.agentType.Upper, settings.agentName.English, settings.agentName.English, settings.agentName.English, settings.descEng , settings.agentName.English, settings.agentName.English, settings.agentName.English);
-	if (settings.hasHat == true) {
+	if (settings.has[hat] == true) {
 		fprintf(settings.outputFile.outputFile[f_operator],
 			"\t\t\t<li>AK_Hat_%s</li>\n", settings.agentName.English);
 	}
@@ -165,19 +165,28 @@ void FileProcess(Settings settings) {
 
 	//---------------生成服装。本体是中文，而翻译是英语，下同。-------------------------------------------------------------------------------------
 	printf("正在处理 ApparelDef.xml\n");
-		printf("\t正在处理 干员:%s\n", settings.agentName.English);
-		fprintf(settings.outputFile.outputFile[f_apparel],
-			"\t<ThingDef ParentName=\"AK_ArmorBase_%s\">\n"
-			"\t\t<defName>AK_Apparel_%s</defName>\n"
-			"\t\t<label>%s%s</label>\n"
-			"\t\t<graphicData>\n"
-			"\t\t\t<texPath>Things/AK_Agents/GApparel</texPath>\n"
-			"\t\t\t<graphicClass>Graphic_Single</graphicClass>\n"
-			"\t\t</graphicData>\n"
-			"\t\t<apparel>\n"
-			"\t\t\t<wornGraphicPath>Things/AK_Agents/%s/%s</wornGraphicPath>\n"
-			"\t\t</apparel>\n"
-			"\t</ThingDef>\n\n", settings.agentType.Upper, settings.agentName.English, settings.agentName.Chinese, UTF8Type.apparel, settings.agentType.Upper, settings.agentName.English);
+	printf("\t正在处理 干员:%s\n", settings.agentName.English); 
+	char temp[100] = "\0";
+	if (settings.has[apparelDropped]) {
+		sprintf(temp, "%s/%s", settings.agentType.Upper, settings.agentName.English);
+	}
+	else {
+		strcpy(temp, "GApparel");
+	}
+	fprintf(settings.outputFile.outputFile[f_apparel],
+		"\t<ThingDef ParentName=\"AK_ArmorBase_%s\">\n"
+		"\t\t<defName>AK_Apparel_%s</defName>\n"
+		"\t\t<label>%s%s</label>\n"
+		"\t\t<graphicData>\n"
+		"\t\t\t<texPath>Things/AK_Agents/%s</texPath>\n"
+		"\t\t\t<graphicClass>Graphic_Single</graphicClass>\n"
+		"\t\t</graphicData>\n"
+		"\t\t<apparel>\n"
+		"\t\t\t<wornGraphicPath>Things/AK_Agents/%s/%s</wornGraphicPath>\n"
+		"\t\t</apparel>\n"
+		"\t</ThingDef>\n\n", settings.agentType.Upper, settings.agentName.English, settings.agentName.Chinese, UTF8Type.apparel, temp, settings.agentType.Upper, settings.agentName.English
+	);
+
 	printf("处理完成.\n");
 	fprintf(settings.outputFile.outputFile[f_apparel], "</Defs>");
 	fclose(settings.outputFile.outputFile[f_apparel]);
@@ -193,21 +202,27 @@ void FileProcess(Settings settings) {
 	fclose(settings.outputFile.outputFileTranslate[f_apparel]);
 
 	//帽子
-	if (settings.hasHat == true) {
+	if (settings.has[hat] == true) {
+		if (settings.has[hatDropped]) {
+			sprintf(temp, "%sH", settings.agentName.English);
+		}
+		else {
+			strcpy(temp, "GHat");
+		}
 		printf("正在处理帽子\n");
 		fprintf(settings.outputFile.outputFile[f_hat],
 			"\t<ThingDef ParentName=\"AK_HatBase\">\n"
 			"\t\t<defName>AK_Hat_%s</defName>\n"
 			"\t\t<label>%s%s</label>\n"
 			"\t\t<graphicData>\n"
-			"\t\t\t<texPath>Things/AK_Agents/HatAccessory/GHat</texPath>\n"
+			"\t\t\t<texPath>Things/AK_Agents/HatAccessory/%s</texPath>\n"
 			"\t\t\t<graphicClass>Graphic_Single</graphicClass>\n"
 			"\t\t</graphicData>\n"
 			"\t\t<apparel>\n"
 			"\t\t\t<wornGraphicPath>Things/AK_Agents/HatAccessory/%sH</wornGraphicPath>\n"
 			"\t\t</apparel>\n"
 			"\t</ThingDef>\n\n"
-			"</Defs>", settings.agentName.English, settings.agentName.Chinese, UTF8Type.hat, settings.agentName.English);
+			"</Defs>", settings.agentName.English, settings.agentName.Chinese, UTF8Type.hat, temp, settings.agentName.English);
 		fclose(settings.outputFile.outputFile[f_hat]);
 
 		fprintf(settings.outputFile.outputFileTranslate[f_hat],

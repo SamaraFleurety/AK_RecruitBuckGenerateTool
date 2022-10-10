@@ -1,4 +1,4 @@
->Mode:1<0:正常模式 1:重置贴图
+>Mode:0<0:正常模式 1:重置贴图
 >EnglishName:Angelina<
 >ChineseName:菲亚梅塔<
 >AgentType:Supporter<Caster Defender Guard Medic Sniper Specialist Supporter Vanguard

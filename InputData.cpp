@@ -117,7 +117,7 @@ Settings readConfig(Settings settings) {
 }
 
 bool HasHat() { //已经从落后的手动输入变成自动检测
-	int temp = _access(".\\input\\aaH.png", 6);
+	int temp = _access(".\\input\\aaH_south.png", 6);
 
 	if (temp == 0) {
 		printf("有帽子.\n");
@@ -155,21 +155,25 @@ Settings InitializeSettings() {
 	//武器
 	settings.outputFile.outputFile[f_weapon] = OpenFile(".\\output\\Defs\\ThingsDefs\\ThingsDefs_Weapon\\Weapon_", settings.agentType.Upper, ".xml", "WeaponDef");
 	settings.outputFile.outputFileTranslate[f_weapon] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Things\\WeaponTranslate_", settings.agentType.Upper, ".xml", "WeaponDef翻译");
-
+	//头发
 	settings.outputFile.outputFile[f_hair] = OpenFile(".\\output\\Defs\\HairDefs\\Hair_", settings.agentType.Upper, ".xml", "HairDef");
 	settings.outputFile.outputFileTranslate[f_hair] = OpenFile(".\\output\\Languages\\English\\DefInjected\\HairDef\\HairTranslate_", settings.agentType.Upper, ".xml", "HairDef翻译");
-
+	//特性
 	settings.outputFile.outputFile[f_trait] = OpenFile(".\\output\\Defs\\TraitsDefs\\Trait_", settings.agentType.Upper, ".xml", "TraitDef");
 	settings.outputFile.outputFileTranslate[f_trait] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Trait\\_", settings.agentType.Upper, ".xml", "TraitDef翻译");
-
+	//特性->想法
 	settings.outputFile.outputFile[f_thoughts] = OpenFile(".\\output\\Defs\\TraitsDefs\\Thought\\Thought_", settings.agentType.Upper, ".xml", "ThoughtDef");
 	settings.outputFile.outputFileTranslate[f_thoughts] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Trait\\Thought\\_", settings.agentType.Upper, ".xml", "ThoughtDef翻译");
-
+	//背景故事
 	settings.outputFile.outputFile[f_backstory] = OpenFile(".\\output\\Defs\\BackStory\\Story_", settings.agentType.Upper, ".xml", "BSDef");
 	settings.outputFile.outputFileTranslate[f_backstory] = OpenFile(".\\output\\Languages\\English\\DefInjected\\StoriesRetold\\_", settings.agentType.Upper, ".xml", "BSDef翻译");
+	//语音
+	settings.outputFile.outputFile[f_voice] = OpenFile(".\\output\\Defs\\VoiceDef\\Voice_", settings.agentType.Upper, ".xml", "VoiceDef");
 
-	settings.hasHat = HasHat();
-	if (settings.hasHat) {
+	settings.has[hat] = HasHat();
+	settings.has[apparelDropped] = _access(".\\input\\aa.png", 6) == 0 ? true : false;
+	settings.has[hatDropped] = _access(".\\input\\aaH.png", 6) == 0 ? true : false;
+	if (settings.has[hat]) {
 		settings.outputFile.outputFile[f_hat] = OpenFile(".\\output\\Defs\\ThingsDefs_Apparel\\Apparel_Hat.xml", "", "", "HatDef");
 		settings.outputFile.outputFileTranslate[f_hat] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Things\\ApparelTranslate_Hat.xml", "", "", "HatDef翻译");
 	}

@@ -2,6 +2,7 @@
 #define _CheckFile_h
 #include "TypeDef.h"
 
+//去除文件末尾的</def> </translate>
 void FileEndCheck(FILE* targetFile);
 void FileEndCheckTranslate(FILE* targetFile);
 

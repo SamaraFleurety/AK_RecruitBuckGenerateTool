@@ -8,13 +8,18 @@
 #include "InputData.h"
 #include "Output.h"
 #include "CheckFile.h"
+#include "AutoProcessVoicePack.h"
 #include "ANSI-UNICODE-UTF8.h"
 
 int main() {
 	//我不知道为啥用settings指针会报错。别改。
+	PrintVoiceCount();
 	Settings settings = InitializeSettings();
+	//settings.debugOverride = true;
 	CheckAll(settings);
 
+	AutoProcessVoicePack(&settings);
+	
 	FileProcess(settings);
 
 	printf("执行完成.");

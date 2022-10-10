@@ -1,18 +1,47 @@
 #ifndef _TypeDef_h
 #define _TypeDef_h
 
-#define fileCnt 8
-#define f_hat 0
-#define f_apparel 1
-#define f_weapon 2
-#define f_hair 3
-#define f_operator 4
-#define f_backstory 5
-#define f_trait 6
-#define f_thoughts 7
 #define thoughtsmax 3
 
 #include "RBT_String.h"
+
+enum VoiceType_enum {
+	Ability = 0,
+	Die,
+	Draft,
+	Recruit,
+	Select,
+	Undraft
+};
+
+enum BodyType_enum {
+	Thin = 1, Hulk, Fat, Male, Female
+};
+
+enum FileType_enum {
+	f_hat = 0,
+	f_apparel,
+	f_weapon,
+	f_hair,
+	f_operator,
+	f_backstory,
+	f_trait,
+	f_thoughts,
+	f_voice,
+	fileCnt
+};
+
+enum XMLType_enum {
+	def = 0,
+	languageData
+};
+
+enum TextureType_enum {
+	hat = 0,
+	hatDropped,
+	apparelDropped,
+	textureTypeCnt
+};
 
 typedef struct OutputFile_struct {
 	//FILE* inputFile = NULL;
@@ -43,10 +72,6 @@ typedef struct BodyType_struct {
 	enum BodyType_enum mark;
 	char string[10];
 }BodyType;
-
-enum BodyType_enum {
-	Thin = 1, Hulk, Fat, Male, Female
-};
 
 typedef struct Skills_struct {
 	int animals;
@@ -83,8 +108,8 @@ typedef struct Story_struct {
 	char adultName[50];
 };
 
-
 typedef struct Settings_struct {
+	bool debugOverride = false;
 	int generateMode;
 	AgentName agentName;
 	AgentType agentType;
@@ -94,7 +119,7 @@ typedef struct Settings_struct {
 	char descEng[500];
 	char descChi[500];
 	Skills skills;
-	bool hasHat;
+	bool has[textureTypeCnt];
 	OutputFile outputFile;
 	RBSRoot* traitsRoot;
 	int* thought;
