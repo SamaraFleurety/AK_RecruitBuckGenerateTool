@@ -7,20 +7,38 @@
 #include <io.h>
 #include "InputData.h"
 #include "Output.h"
-#include "CheckFile.h"
-#include "AutoProcessVoicePack.h"
+#include "TextureProcess.h"
+#include "VoicePackProcess.h"
+#include "xmlEndProcess.h"
 #include "ANSI-UNICODE-UTF8.h"
+#include "PrintOperator.h"
+
+void CheckAll(Settings* settings) {
+	if (!settings->debugOverride)FileEndCheck_All(settings);
+
+	CreateTextureFolder(settings->agentType);
+	if (!settings->debugOverride) CheckTexture(settings->has[hat]);
+
+	printOperator(settings);
+
+	return;
+}
 
 int main() {
 	//我不知道为啥用settings指针会报错。别改。
+	printf("Version.22-10-11\n");
 	PrintVoiceCount();
 	Settings settings = InitializeSettings();
-	//settings.debugOverride = true;
-	CheckAll(settings);
+	settings.debugOverride = false;
+	CheckAll(&settings);
 
+	if (!settings.debugOverride) MoveTexture(settings);
+
+	if (!settings.debugOverride) FileEndRemove_All(&settings);
 	AutoProcessVoicePack(&settings);
 	
 	FileProcess(settings);
+	FileEndRestore_All(&settings);
 
 	printf("执行完成.");
 	system("Pause");

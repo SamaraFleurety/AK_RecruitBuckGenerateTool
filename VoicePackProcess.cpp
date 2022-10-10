@@ -6,11 +6,8 @@
 #include <io.h>
 #include <direct.h>
 #include "TypeDef.h"
-#include "AutoProcessVoicePack.h"
-
-void FileEndRestore(FILE* file) {
-	fprintf(file, "</Defs>");
-}
+#include "xmlEndProcess.h"
+#include "VoicePackProcess.h"
 
 static char* GetVoiceFileNameFromNumber(int number) {
 	if (number >= 100 || number <= 0) {
@@ -160,6 +157,6 @@ void AutoProcessVoicePack(Settings* settings) {
 	}
 
 	FileEndRestore(settings->outputFile.outputFile[f_voice]);
-
+	
 	return;
 }

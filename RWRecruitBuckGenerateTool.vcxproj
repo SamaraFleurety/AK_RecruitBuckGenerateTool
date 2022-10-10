@@ -142,23 +142,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AutoProcessVoicePack.cpp" />
-    <ClCompile Include="CheckFile.cpp" />
+    <ClCompile Include="PrintOperator.cpp" />
+    <ClCompile Include="VoicePackProcess.cpp" />
+    <ClCompile Include="TextureProcess.cpp" />
     <ClCompile Include="InputData.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="TypeDef.cpp" />
     <ClCompile Include="ANSI-UNICODE-UTF8.cpp" />
     <ClCompile Include="RBT_String.cpp" />
+    <ClCompile Include="xmlEndProcess.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ANSI-UNICODE-UTF8.h" />
-    <ClInclude Include="AutoProcessVoicePack.h" />
+    <ClInclude Include="PrintOperator.h" />
+    <ClInclude Include="VoicePackProcess.h" />
     <ClInclude Include="InputData.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="TypeDef.h" />
-    <ClInclude Include="CheckFile.h" />
+    <ClInclude Include="TextureProcess.h" />
     <ClInclude Include="RBT_String.h" />
+    <ClInclude Include="xmlEndProcess.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

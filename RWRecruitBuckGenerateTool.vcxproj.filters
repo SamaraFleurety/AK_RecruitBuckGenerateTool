@@ -30,13 +30,19 @@
     <ClCompile Include="ANSI-UNICODE-UTF8.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CheckFile.cpp">
+    <ClCompile Include="TextureProcess.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="RBT_String.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="AutoProcessVoicePack.cpp">
+    <ClCompile Include="VoicePackProcess.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="xmlEndProcess.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PrintOperator.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,13 +59,19 @@
     <ClInclude Include="ANSI-UNICODE-UTF8.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="CheckFile.h">
+    <ClInclude Include="TextureProcess.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="RBT_String.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="AutoProcessVoicePack.h">
+    <ClInclude Include="VoicePackProcess.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="xmlEndProcess.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintOperator.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

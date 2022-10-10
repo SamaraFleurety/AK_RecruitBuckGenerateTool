@@ -3,9 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include <fcntl.h>
 #include <io.h>
-#include "TypeDef.h"
+#include "Output.h"
 
 void numToEnglish(FILE* fp, int i) {
 	switch (i) {
@@ -147,8 +146,6 @@ void FileProcess(Settings settings) {
 		"\t</AK_DLL.OperatorDef>\n\n");
 		
 	printf("处理完成.\n");
-	fprintf(settings.outputFile.outputFile[f_operator], "</Defs>");
-	fclose(settings.outputFile.outputFile[f_operator]);
 
 	//----------翻译
 	printf("正在处理 OperatorDef.xml 的翻译文件.\n");
@@ -159,9 +156,6 @@ void FileProcess(Settings settings) {
 		"\t<AK_Recruit_%s.description>%s</AK_Recruit_%s.description>\n\n", settings.agentName.English, settings.agentName.Chinese, settings.agentName.English, settings.agentName.English, settings.agentName.Chinese, settings.agentName.English, settings.agentName.English, settings.descChi, settings.agentName.English);
 		
 	printf("处理完成.\n");
-
-	fprintf(settings.outputFile.outputFileTranslate[f_operator], "</LanguageData>");
-	fclose(settings.outputFile.outputFileTranslate[f_operator]);
 
 	//---------------生成服装。本体是中文，而翻译是英语，下同。-------------------------------------------------------------------------------------
 	printf("正在处理 ApparelDef.xml\n");
@@ -188,18 +182,13 @@ void FileProcess(Settings settings) {
 	);
 
 	printf("处理完成.\n");
-	fprintf(settings.outputFile.outputFile[f_apparel], "</Defs>");
-	fclose(settings.outputFile.outputFile[f_apparel]);
-
-	//
+	
 	printf("正在处理 ApparelDef.xml 的翻译文件\n");
 		printf("\t正在处理 干员:%s\n", settings.agentName.English);
 		fprintf(settings.outputFile.outputFileTranslate[f_apparel],
 			"\t<AK_Apparel_%s.label>%s's Apparel</AK_Apparel_%s.label>\n\n", settings.agentName.English, settings.agentName.English, settings.agentName.English);
 		
 	printf("处理完成.\n");
-	fprintf(settings.outputFile.outputFileTranslate[f_apparel], "</LanguageData>");
-	fclose(settings.outputFile.outputFileTranslate[f_apparel]);
 
 	//帽子
 	if (settings.has[hat] == true) {
@@ -222,14 +211,12 @@ void FileProcess(Settings settings) {
 			"\t\t\t<wornGraphicPath>Things/AK_Agents/HatAccessory/%sH</wornGraphicPath>\n"
 			"\t\t</apparel>\n"
 			"\t</ThingDef>\n\n"
-			"</Defs>", settings.agentName.English, settings.agentName.Chinese, UTF8Type.hat, temp, settings.agentName.English);
-		fclose(settings.outputFile.outputFile[f_hat]);
+			, settings.agentName.English, settings.agentName.Chinese, UTF8Type.hat, temp, settings.agentName.English);
 
 		fprintf(settings.outputFile.outputFileTranslate[f_hat],
 			"\t<AK_Hat_%s.label>%s's Hat</AK_Hat_%s.label>\n\n"
-			"</LanguageData>", settings.agentName.English, settings.agentName.English, settings.agentName.English);
+			, settings.agentName.English, settings.agentName.English, settings.agentName.English);
 		printf("处理完成.\n");
-		fclose(settings.outputFile.outputFileTranslate[f_hat]);
 	}
 
 //------------武器----------------------------------------------------------------------------
@@ -244,15 +231,11 @@ void FileProcess(Settings settings) {
 			"\t\t</graphicData>\n"
 			"\t</ThingDef>\n\n", settings.agentType.Upper, settings.agentName.English, settings.agentName.Chinese, UTF8Type.weapon, settings.agentType.Upper, settings.agentName.English);
 	printf("处理完成.\n");
-	fprintf(settings.outputFile.outputFile[f_weapon], "</Defs>");
-	fclose(settings.outputFile.outputFile[f_weapon]);
 
 	printf("正在处理 WeaponDef.xml 的翻译文件\n");
 		fprintf(settings.outputFile.outputFileTranslate[f_weapon],
 			"\t<AK_Weapon_%s.label>%s's Weapon</AK_Weapon_%s.label>\n\n", settings.agentName.English, settings.agentName.English, settings.agentName.English);
 	printf("处理完成.\n");
-	fprintf(settings.outputFile.outputFileTranslate[f_weapon], "</LanguageData>");
-	fclose(settings.outputFile.outputFileTranslate[f_weapon]);
 	
 //-----发型-------------------------------------------------
 	printf("正在处理 HairDef.xml\n");
@@ -263,17 +246,12 @@ void FileProcess(Settings settings) {
 			"\t\t<texPath>Things/Hair/%s/%s</texPath>\n"
 			"\t</HairDef>\n\n", settings.agentName.English, settings.agentName.Chinese, UTF8Type.hair, settings.agentType.Upper, settings.agentName.English);
 	printf("处理完成.\n");
-	fprintf(settings.outputFile.outputFile[f_hair], "</Defs>");
-	fclose(settings.outputFile.outputFile[f_hair]);
 		
 	printf("正在处理 HairDef.xml 的翻译文件\n");
 		printf("\t正在处理 干员:%s\n", settings.agentName.English);
 		fprintf(settings.outputFile.outputFileTranslate[f_hair],
 			"\t<AK_Hair_%s.label>%s's Hair</AK_Hair_%s.label>\n\n", settings.agentName.English, settings.agentName.English, settings.agentName.English);
 	printf("处理完成.\n");
-	fprintf(settings.outputFile.outputFileTranslate[f_hair], "</LanguageData>");
-	fclose(settings.outputFile.outputFileTranslate[f_hair]);
-
 
 	//背景故事
 	printf("正在处理 背景故事\n");
@@ -298,20 +276,14 @@ void FileProcess(Settings settings) {
 			"\t</StoriesRetold.SRBackstoryDef>\n\n", settings.agentName.English, settings.story.adultName, settings.story.adultDesc);
 	}
 	printf("处理完成.\n");
-	fprintf(settings.outputFile.outputFile[f_backstory], "</Defs>");
 
 	//翻译。没做。
-	fprintf(settings.outputFile.outputFileTranslate[f_backstory], "\n</LanguageData>");
 
 	//特性
 	printf("正在处理 特性\n");
 	NewTraitGenerate(settings.outputFile.outputFile[f_trait], settings.outputFile.outputFile[f_thoughts], rbts_search_returnNode(settings.traitsRoot, "Personal", 1)->degree, settings.thought, settings.agentName.English);
 	printf("处理完成.\n");
-	fprintf(settings.outputFile.outputFile[f_trait], "</Defs>");
-	fprintf(settings.outputFile.outputFile[f_thoughts], "</Defs>");
 
 	//翻译。没做。
-	fprintf(settings.outputFile.outputFileTranslate[f_trait], "\n</LanguageData>");
-	fprintf(settings.outputFile.outputFileTranslate[f_thoughts], "\n</LanguageData>");
 	return;
 }
