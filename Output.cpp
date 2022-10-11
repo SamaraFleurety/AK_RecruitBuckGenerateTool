@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
-#include <io.h>
 #include "Output.h"
 
 void numToEnglish(FILE* fp, int i) {

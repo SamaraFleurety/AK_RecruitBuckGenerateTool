@@ -1,10 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-#include <fcntl.h>
-#include <io.h>
 #include "InputData.h"
 #include "Output.h"
 #include "TextureProcess.h"
@@ -33,9 +29,9 @@ int main() {
 
 	if (!settings->debugOverride) MoveTexture(settings);
 
-	if (!settings->debugOverride) FileEndRemove_All(settings);
+	FileEndRemove_All(settings);
 	AutoProcessVoicePack(settings);
-	
+
 	FileProcess(settings);
 	FileEndRestore_All(settings);
 

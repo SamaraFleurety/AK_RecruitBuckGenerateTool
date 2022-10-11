@@ -173,7 +173,7 @@ Settings* InitializeSettings() {
 	settings->has[apparelDropped] = _access(".\\input\\aa.png", 6) == 0 ? true : false;
 	settings->has[hatDropped] = _access(".\\input\\aaH.png", 6) == 0 ? true : false;
 	if (settings->has[hat]) {
-		settings->outputFile.outputFile[f_hat] = OpenFile(".\\output\\Defs\\ThingsDefs_Apparel\\Apparel_Hat.xml", "", "", "HatDef");
+		settings->outputFile.outputFile[f_hat] = OpenFile(".\\output\\Defs\\ThingsDefs\\ThingsDefs_Apparel\\Apparel_Hat.xml", "", "", "HatDef");
 		settings->outputFile.outputFileTranslate[f_hat] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Things\\ApparelTranslate_Hat.xml", "", "", "HatDef∑≠“Î");
 	}
 
