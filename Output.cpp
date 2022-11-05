@@ -259,8 +259,9 @@ void FileProcess(Settings* settings) {
 			"\t\t<defName>AK_BackStory_%s_Child</defName>\n"
 			"\t\t<slot>Childhood</slot>\n"
 			"\t\t<title>%s</title>\n"
+			"\t\t<titleShort>%s</titleShort>\n"
 			"\t\t<baseDesc>%s</baseDesc>\n"
-			"\t</BackstoryDef>\n\n", settings->agentName.English, settings->story.childName, settings->story.childDesc);
+			"\t</BackstoryDef>\n\n", settings->agentName.English, settings->story.childName, settings->story.childName, settings->story.childDesc);
 	}
 	if (settings->story.backstory[1] == 1) {
 		fprintf(settings->outputFile.outputFile[f_backstory],
@@ -268,8 +269,9 @@ void FileProcess(Settings* settings) {
 			"\t\t<defName>AK_BackStory_%s_Adult</defName>\n"
 			"\t\t<slot>Adulthood</slot>\n"
 			"\t\t<title>%s</title>\n"
+			"\t\t<titleShort>%s</titleShort>\n"
 			"\t\t<baseDesc>%s</baseDesc>\n"
-			"\t</BackstoryDef>\n\n", settings->agentName.English, settings->story.adultName, settings->story.adultDesc);
+			"\t</BackstoryDef>\n\n", settings->agentName.English, settings->story.adultName, settings->story.adultName, settings->story.adultDesc);
 	}
 	printf("处理完成.\n");
 
