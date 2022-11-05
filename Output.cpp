@@ -191,7 +191,7 @@ void FileProcess(Settings* settings) {
 	//ц╠вс
 	if (settings->has[hat] == true) {
 		if (settings->has[hatDropped]) {
-			sprintf(temp, "%sH", settings->agentName.English);
+			sprintf(temp, "HatAccessory/%sH", settings->agentName.English);
 		}
 		else {
 			strcpy(temp, "GHat");
@@ -202,7 +202,7 @@ void FileProcess(Settings* settings) {
 			"\t\t<defName>AK_Hat_%s</defName>\n"
 			"\t\t<label>%s%s</label>\n"
 			"\t\t<graphicData>\n"
-			"\t\t\t<texPath>Things/AK_Agents/HatAccessory/%s</texPath>\n"
+			"\t\t\t<texPath>Things/AK_Agents/%s</texPath>\n"
 			"\t\t\t<graphicClass>Graphic_Single</graphicClass>\n"
 			"\t\t</graphicData>\n"
 			"\t\t<apparel>\n"
