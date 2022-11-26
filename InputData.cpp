@@ -83,8 +83,8 @@ void readConfig(Settings* settings) {
 	errFlag += fscanf(settings->outputFile.configFile, ">BodyType:%[^<]<%[^>]", settings->bodyType, temp);
 	bodyTypeCheck(settings->bodyType);
 
-	errFlag += fscanf(settings->outputFile.configFile, ">EngDesc:\n%[^<]<\n", settings->descEng);
-	errFlag += fscanf(settings->outputFile.configFile, ">ChinDesc:\n%[^<]<\n", settings->descChi);
+	errFlag += fscanf(settings->outputFile.configFile, ">EngDesc:%[^<]<\n", settings->descEng);
+	errFlag += fscanf(settings->outputFile.configFile, ">ChinDesc:%[^<]<\n", settings->descChi);
 	RemoveTrailingSpace(settings->descChi);
 	
 	errFlag += fscanf(settings->outputFile.configFile, ">Skills:\nAnimals:%d %d\n", &settings->skills.animals, &settings->skills.animalsFire);
