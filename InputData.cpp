@@ -63,7 +63,7 @@ void getTraits(RBSRoot* traitsroot, FILE* config) {
 
 void readConfig(Settings* settings) {
 	int errFlag = 0;
-	char temp[100] = "\0";
+	char temp[500] = "\0";
 	errFlag += fscanf(settings->outputFile.configFile, ">Mode:%d<%[^>]", &settings->generateMode, temp);
 	errFlag += fscanf(settings->outputFile.configFile, ">EnglishName:%[^<]<\n", settings->agentName.English);
 	errFlag += fscanf(settings->outputFile.configFile, ">ChineseName:%[^<]<\n", settings->agentName.Chinese);
