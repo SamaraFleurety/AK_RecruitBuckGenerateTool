@@ -57,8 +57,8 @@ static char* GetNewPath(AgentName* agentName, AgentType* agentType, char* voiceT
 }
 
 static char** VoiceType_Create() {
-	char** voiceType = (char**)malloc(sizeof(char*) * 5);
-	for (int i = 0; i < 5; ++i) {
+	char** voiceType = (char**)malloc(sizeof(char*) * 6);
+	for (int i = 0; i < 6; ++i) {
 		voiceType[i] = (char*)malloc(15);
 	}
 	strcpy(voiceType[Ability], "Ability");
@@ -66,6 +66,7 @@ static char** VoiceType_Create() {
 	strcpy(voiceType[Draft], "Draft");
 	strcpy(voiceType[Select], "Select");
 	strcpy(voiceType[Recruit], "Recruit");
+	strcpy(voiceType[Undraft], "Undraft");
 	return voiceType;
 }
 
@@ -83,28 +84,28 @@ static char** VoiceNumber_Create() {
 	return voiceNumber;
 }
 
-static int ProcessVoice(int voiceNumber, Settings* settings, char* voiceType, char* voiceNumberString) {
-	if (GetVoiceFileNumbered(voiceNumber) == 0) return 0;
-	char* oldPath = GetVoiceFileNameFromNumber(voiceNumber);
-	char* newPath = GetNewPath(&settings->agentName, &settings->agentType, voiceType, voiceNumberString);
-	if (settings->debugOverride) printf("%s -> %s\n", oldPath, newPath);
+static int GenVoiceDef(Settings* settings, char* voiceType, char* voiceNumberString) {
+	char temp[500]; 
+	strcpy(temp, voiceType);
+	strcat(temp, "_");
+	strcat(temp, settings->agentName.English);
+	strcat(temp, voiceNumberString);
 
-	rename(oldPath, newPath);
 
 	fprintf(settings->outputFile.outputFile[f_voice],
 		"\t<SoundDef ParentName = \"AK_VoiceBase\">\n"
-		"\t\t<defName>AK_Voice_%s_%s%s</defName>\n"
+		"\t\t<defName>AK_Voice_%s</defName>\n"
 		"\t\t<subSounds>\n\t\t\t<li>\n"
 		"\t\t\t\t<onCamera>True</onCamera>\n"
 		"\t\t\t\t\t<grains>\n\t\t\t\t\t\t<li Class=\"AudioGrain_Clip\">\n"
-		"\t\t\t\t\t\t\t<clipPath>Operator/Supporter/Istina/char_195_glassb/Ability_IstinaIV</clipPath>\n"
+		"\t\t\t\t\t\t\t<clipPath>Operator/%s/%s/%s/%s</clipPath>\n"
 		"\t\t\t\t\t\t</li>\n\t\t\t\t\t</grains>\n"
 		"\t\t\t\t<volumeRange>40~40</volumeRange>\n"
 		"\t\t\t\t<distRange>10~100</distRange>\n"
 		"\t\t\t\t<sustainLoop>False</sustainLoop>\n"
 		"\t\t\t</li>\n\t\t</subSounds>\n"
 		"\t</SoundDef>\n\n"
-		, voiceType, settings->agentName.English, voiceNumberString, &newPath[16]
+		, temp, settings->agentType.Upper, settings->agentName.English, settings->voicePath, temp
 		);
 
 	return 1;
@@ -133,30 +134,25 @@ void AutoProcessVoicePack(Settings* settings) {
 	char** voiceType = VoiceType_Create();
 	char** voiceNumber = VoiceNumber_Create();
 
-	CreatVoicePackPath(&settings->agentName, &settings->agentType);
-
 	printf("正在处理 语音文件及其def\n");
 
-	ProcessVoice(11, settings, voiceType[Recruit], voiceNumber[0]);
+	GenVoiceDef(settings, voiceType[Recruit], voiceNumber[0]);
 
-	ProcessVoice(32, settings, voiceType[Die], voiceNumber[0]);
+	GenVoiceDef(settings, voiceType[Die], voiceNumber[0]);
 
-	int temp = 1;
-	temp += ProcessVoice(21, settings, voiceType[Select], voiceNumber[temp]);
-	temp += ProcessVoice(22, settings, voiceType[Select], voiceNumber[temp]);
-	temp += ProcessVoice(34, settings, voiceType[Select], voiceNumber[temp]);
-	temp += ProcessVoice(36, settings, voiceType[Select], voiceNumber[temp]);
+	GenVoiceDef(settings, voiceType[Undraft], voiceNumber[0]);
 
-	temp = 1;
-	temp += ProcessVoice(23, settings, voiceType[Draft], voiceNumber[temp]);
-	temp += ProcessVoice(24, settings, voiceType[Draft], voiceNumber[temp]);
-
-	temp = 1;
-	for (int i = 25; i <= 28; ++i) {
-		temp += ProcessVoice(i, settings, voiceType[Ability], voiceNumber[temp]);
+	for (int i = 1; i <= 4; ++i) {
+		GenVoiceDef(settings, voiceType[Select], voiceNumber[i]);
 	}
 
-	FileEndRestore(settings->outputFile.outputFile[f_voice]);
+	for (int i = 1; i <= 2; ++i) {
+		GenVoiceDef(settings, voiceType[Draft], voiceNumber[i]);
+	}
+
+	for (int i = 1; i <= 4; ++i) {
+		GenVoiceDef(settings, voiceType[Ability], voiceNumber[i]);
+	}
 	
 	return;
 }

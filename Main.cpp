@@ -22,7 +22,6 @@ void CheckAll(Settings* settings) {
 
 int main() {
 	printf("Version.22-10-11\n");
-	PrintVoiceCount();
 	Settings* settings = InitializeSettings();
 	settings->debugOverride = false;
 	CheckAll(settings);

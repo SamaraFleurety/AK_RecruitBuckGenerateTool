@@ -222,12 +222,13 @@ void FileProcess(Settings* settings) {
 		fprintf(settings->outputFile.outputFile[f_weapon],
 			"\t<ThingDef ParentName=\"AK_WeaponBase_%s\">\n"
 			"\t\t<defName>AK_Weapon_%s</defName>\n"
-			"\t\t<label>%s%s</label>\n"
+			"\t\t<label>%s</label>\n"
 			"\t\t<graphicData>\n"
 			"\t\t\t<texPath>Things/AK_Agents/Weapon/%s/%sW</texPath>\n"
 			"\t\t\t<graphicClass>Graphic_Single</graphicClass>\n"
 			"\t\t</graphicData>\n"
-			"\t</ThingDef>\n\n", settings->agentType.Upper, settings->agentName.English, settings->agentName.Chinese, UTF8Type.weapon, settings->agentType.Upper, settings->agentName.English);
+			"\t\t<description>%s</description>\n"
+			"\t</ThingDef>\n\n", settings->agentType.Upper, settings->agentName.English, settings->weaponName, settings->agentType.Upper, settings->agentName.English, settings->weaponDesc);
 	printf("处理完成.\n");
 
 	printf("正在处理 WeaponDef.xml 的翻译文件\n");

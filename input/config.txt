@@ -40,4 +40,7 @@ Beauty 1
 NaturalMood 1
 TooSmart
 <
->Thought:0 0 0<
+>Thought:1 2 3 <
+>WeaponName:WeaponName<
+>WeaponDesc:WeaponDesc<
+>VoiceFolder:VoiceFolder<

@@ -123,6 +123,9 @@ typedef struct Settings_struct {
 	OutputFile outputFile;
 	RBSRoot* traitsRoot;
 	int* thought;
+	char weaponName[50];
+	char weaponDesc[500];
+	char voicePath[200];
 }Settings;
 
 void AnyKeyQuit();

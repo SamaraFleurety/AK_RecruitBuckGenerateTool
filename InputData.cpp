@@ -37,8 +37,12 @@ void bodyTypeCheck(const char bodyType[]) {
 static void RemoveTrailingSpace (char *string) {
 	if (strlen(string) <= 1) return;
 	int sp = 0;
-	while (string[sp] != '\0') ++sp;
-	--sp;
+	while (string[sp] == '\n' || string[sp] == ' ') {
+		string = &string[1];
+		++sp;
+	}
+
+	sp = strlen(string) - 1;
 	while (string[sp] == '\n' || string[sp] == ' ') {
 		string[sp] = '\0';
 		--sp;
@@ -86,6 +90,7 @@ void readConfig(Settings* settings) {
 	errFlag += fscanf(settings->outputFile.configFile, ">EngDesc:%[^<]<\n", settings->descEng);
 	errFlag += fscanf(settings->outputFile.configFile, ">ChinDesc:%[^<]<\n", settings->descChi);
 	RemoveTrailingSpace(settings->descChi);
+	RemoveTrailingSpace(settings->descEng);
 	
 	errFlag += fscanf(settings->outputFile.configFile, ">Skills:\nAnimals:%d %d\n", &settings->skills.animals, &settings->skills.animalsFire);
 	errFlag += fscanf(settings->outputFile.configFile, "Artistic:%d %d\n", &settings->skills.art, &settings->skills.artFire);
@@ -109,7 +114,15 @@ void readConfig(Settings* settings) {
 		errFlag = fscanf(settings->outputFile.configFile, "%d ", &settings->thought[i]);
 		if (errFlag == -1) settings->thought[i] = 0;
 	}
-	errFlag += fscanf(settings->outputFile.configFile, "%[^<]<\n", temp);
+	errFlag += fscanf(settings->outputFile.configFile, "%[^>]", temp);
+
+	errFlag += fscanf(settings->outputFile.configFile, ">WeaponName:%[^<]<\n", settings->weaponName);
+	errFlag += fscanf(settings->outputFile.configFile, ">WeaponDesc:%[^<]<\n", settings->weaponDesc);
+	RemoveTrailingSpace(settings->weaponName);
+	RemoveTrailingSpace(settings->weaponDesc);
+	errFlag += fscanf(settings->outputFile.configFile, ">VoiceFolder:%[^<]<\n", settings->voicePath);
+	printf("%d\n%d\n%d\n", settings->thought[0], settings->thought[1], settings->thought[2]);
+	printf("%s\n%s\n%s\n", settings->weaponDesc, settings->weaponName, settings->voicePath);
 	//FIXME:
 	//printf("%d\n%s %s\n%s\n%d\n%d\n%d\n%s\n", settings->generateMode, settings->agentName.English, settings->agentName.Chinese, settings->agentType.Upper, settings->age, settings->backstory[0], settings->backstory[1], settings->bodyType.string);
 	return;
