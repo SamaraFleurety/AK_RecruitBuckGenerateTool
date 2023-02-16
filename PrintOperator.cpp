@@ -34,7 +34,6 @@ void printOperator(Settings* settings) {
 			, settings->age, settings->story.backstory[0], settings->story.backstory[1], settings->bodyType
 		);
 
-		PrintVoiceCount();
 
 #pragma region PrintSkill&Fire
 #define _SS settings->skills

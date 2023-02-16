@@ -2,9 +2,8 @@
 #define _AutoVoicePack_h
 #include "TypeDef.h"
 
-void PrintVoiceCount();
-
 void AutoProcessVoicePack(Settings* settings);
 
+void AutoProcessVoiceFile(Settings* settings);
 #endif
 

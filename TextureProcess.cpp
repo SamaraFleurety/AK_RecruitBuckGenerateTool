@@ -39,6 +39,7 @@ void TextureRename(char* target, const char prefix[], const char prefix2[], cons
 	}
 	strcat(target, postfix);
 	strcat(target, ".png");
+	printf("%s\n", target);
 	duplicateTextureDelete(target);
 	return;
 }
@@ -154,63 +155,63 @@ void MoveTexture(Settings* settings) {
 	//char* oldName = (char*)malloc(sizeof(char) * 50);
 	char* newName = (char*)malloc(sizeof(char) * 100);
 
-	TextureRename(newName, "Texture\\Things\\AK_Agents\\", settings->agentType.Upper, settings->agentName.English, "-1", "");
+	TextureRename(newName, "Textures\\Things\\AK_Agents\\", settings->agentType.Upper, settings->agentName.English, "-1", "");
 	rename(".\\input\\aa.png", newName);
 
-	TextureRename(newName, "Texture\\Things\\AK_Agents\\", settings->agentType.Upper, settings->agentName.English, settings->bodyType, "south");
+	TextureRename(newName, "Textures\\Things\\AK_Agents\\", settings->agentType.Upper, settings->agentName.English, settings->bodyType, "south");
 	//FindOrigTexture(oldName, settings->bodyType, "south");
 	int i = rename(".\\input\\aa_bbb_south.png", newName);
 
-	TextureRename(newName, "Texture\\Things\\AK_Agents\\", settings->agentType.Upper, settings->agentName.English, settings->bodyType, "north");
+	TextureRename(newName, "Textures\\Things\\AK_Agents\\", settings->agentType.Upper, settings->agentName.English, settings->bodyType, "north");
 	//FindOrigTexture(oldName, settings->bodyType, "north");
 	i += rename(".\\input\\aa_bbb_north.png", newName);
 
-	TextureRename(newName, "Texture\\Things\\AK_Agents\\", settings->agentType.Upper, settings->agentName.English, settings->bodyType, "east");
+	TextureRename(newName, "Textures\\Things\\AK_Agents\\", settings->agentType.Upper, settings->agentName.English, settings->bodyType, "east");
 	//FindOrigTexture(oldName, settings->bodyType, "east");
 	i += rename(".\\input\\aa_bbb_east.png", newName);
 
-	TextureRename(newName, "Texture\\Things\\AK_Agents\\Weapon\\", settings->agentType.Upper, settings->agentName.English, "-1", "W");
+	TextureRename(newName, "Textures\\Things\\AK_Agents\\Weapon\\", settings->agentType.Upper, settings->agentName.English, "-1", "W");
 	i += rename(".\\input\\aaW.png", newName);
 
-	TextureRename(newName, "Texture\\Things\\Hair\\", settings->agentType.Upper, settings->agentName.English, "-1", "_south");
+	TextureRename(newName, "Textures\\Things\\Hair\\", settings->agentType.Upper, settings->agentName.English, "-1", "_south");
 	i += rename(".\\input\\aa_southHair.png", newName);
 
-	TextureRename(newName, "Texture\\Things\\Hair\\", settings->agentType.Upper, settings->agentName.English, "-1", "_north");
+	TextureRename(newName, "Textures\\Things\\Hair\\", settings->agentType.Upper, settings->agentName.English, "-1", "_north");
 	i += rename(".\\input\\aa_northHair.png", newName);
 
-	TextureRename(newName, "Texture\\Things\\Hair\\", settings->agentType.Upper, settings->agentName.English, "-1", "_east");
+	TextureRename(newName, "Textures\\Things\\Hair\\", settings->agentType.Upper, settings->agentName.English, "-1", "_east");
 	i += rename(".\\input\\aa_eastHair.png", newName);
 
 	//
-	TextureRename(newName, "NoFace\\Texture\\Things\\Hair\\", settings->agentType.Upper, settings->agentName.English, "-1", "_south");
+	TextureRename(newName, "NoFace\\Textures\\Things\\Hair\\", settings->agentType.Upper, settings->agentName.English, "-1", "_south");
 	i += rename(".\\input\\aaNF_south.png", newName);
 
-	TextureRename(newName, "NoFace\\Texture\\Things\\Hair\\", settings->agentType.Upper, settings->agentName.English, "-1", "_north");
+	TextureRename(newName, "NoFace\\Textures\\Things\\Hair\\", settings->agentType.Upper, settings->agentName.English, "-1", "_north");
 	i += rename(".\\input\\aaNF_north.png", newName);
 
-	TextureRename(newName, "NoFace\\Texture\\Things\\Hair\\", settings->agentType.Upper, settings->agentName.English, "-1", "_east");
+	TextureRename(newName, "NoFace\\Textures\\Things\\Hair\\", settings->agentType.Upper, settings->agentName.English, "-1", "_east");
 	i += rename(".\\input\\aaNF_east.png", newName);
 
 	if (settings->has[hat] == true) {
-		TextureRename(newName, "Texture\\Things\\AK_Agents\\HatAccessory\\", "-1", settings->agentName.English, "-1", "H");
+		TextureRename(newName, "Textures\\Things\\AK_Agents\\HatAccessory\\", "-1", settings->agentName.English, "-1", "H");
 		rename(".\\input\\aaH.png", newName);
 
-		TextureRename(newName, "Texture\\Things\\AK_Agents\\HatAccessory\\", "-1", settings->agentName.English, "-1", "H_south");
+		TextureRename(newName, "Textures\\Things\\AK_Agents\\HatAccessory\\", "-1", settings->agentName.English, "-1", "H_south");
 		i += rename(".\\input\\aaH_south.png", newName);
 
-		TextureRename(newName, "Texture\\Things\\AK_Agents\\HatAccessory\\", "-1", settings->agentName.English, "-1", "H_north");
+		TextureRename(newName, "Textures\\Things\\AK_Agents\\HatAccessory\\", "-1", settings->agentName.English, "-1", "H_north");
 		i += rename(".\\input\\aaH_north.png", newName);
 
-		TextureRename(newName, "Texture\\Things\\AK_Agents\\HatAccessory\\", "-1", settings->agentName.English, "-1", "H_east");
+		TextureRename(newName, "Textures\\Things\\AK_Agents\\HatAccessory\\", "-1", settings->agentName.English, "-1", "H_east");
 		i += rename(".\\input\\aaH_east.png", newName);
 	}
 
 	if (CheckStandPortrait() == true) {
 		printf("找到立绘与头像文件.\n");
-		TextureRename(newName, "UI\\Image\\", settings->agentType.Upper, settings->agentName.English, "-1", "Stand");
+		TextureRename(newName, "Textures\\UI\\Image\\", settings->agentType.Upper, settings->agentName.English, "-1", "Stand");
 		i += rename(".\\input\\aaStand.png", newName);
 
-		TextureRename(newName, "UI\\Image\\", settings->agentType.Upper, settings->agentName.English, "-1", "Portrait");
+		TextureRename(newName, "Textures\\UI\\Image\\", settings->agentType.Upper, settings->agentName.English, "-1", "Portrait");
 		i += rename(".\\input\\aaPortrait.png", newName);
 	}
 	else printf("没有头像和立绘\n");

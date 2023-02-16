@@ -9,47 +9,6 @@
 #include "xmlEndProcess.h"
 #include "VoicePackProcess.h"
 
-static char* GetVoiceFileNameFromNumber(int number) {
-	if (number >= 100 || number <= 0) {
-		printf("error:非法语音编号\n");
-		return NULL;
-	}
-	char* path = (char*)malloc(50);
-	strcpy(path, ".\\input\\CN_0");
-	if (number < 10) {
-		strcat(path, "0");
-	}
-	sprintf(path, "%s%d.wav\0", path, number);
-	return path;
-}
-
-static int GetVoiceFileNumbered(int number) {
-	char* path = GetVoiceFileNameFromNumber(number);
-	if (!path) return 0;
-	if (_access(path, 6) == 0) return 1;
-	return 0;
-}
-
-void PrintVoiceCount(){
-	printf("Recruit Voice: %d\n", GetVoiceFileNumbered(11));
-	printf("Died Voice: %d\n", GetVoiceFileNumbered(32));
-	int temp = 0;
-	temp += GetVoiceFileNumbered(21);
-	temp += GetVoiceFileNumbered(22);
-	temp += GetVoiceFileNumbered(34);
-	temp += GetVoiceFileNumbered(36);
-	printf("Select Voice: %d\n", temp);
-	temp = GetVoiceFileNumbered(23);
-	temp += GetVoiceFileNumbered(24);
-	printf("Draft Voice: %d\n", temp);
-	temp = 0;
-	for (int i = 25; i <= 28; ++i) {
-		temp += GetVoiceFileNumbered(i);
-	}
-	printf("Ability Voice: %d\n", temp);
-	return;
-}
-
 static char* GetNewPath(AgentName* agentName, AgentType* agentType, char* voiceType, char* voiceNumber) {
 	char* newPath = (char*)malloc(100);
 	sprintf(newPath, ".\\output\\Sounds\\Operator\\%s\\%s\\voice\\%s_%s%s.wav", agentType->Upper, agentName->English, voiceType, agentName->English, voiceNumber);
@@ -111,30 +70,11 @@ static int GenVoiceDef(Settings* settings, char* voiceType, char* voiceNumberStr
 	return 1;
 }
 
-static void CreatVoicePackPath(AgentName* agentName, AgentType* agentType) {
-	_mkdir(".\\output\\Sounds");
-	_mkdir(".\\output\\Sounds\\Operator");
-
-	char path[100] = ".\\output\\Sounds\\Operator";
-	strcat(path, "\\");
-	strcat(path, agentType->Upper);
-	_mkdir(path);
-
-	strcat(path, "\\");
-	strcat(path, agentName->English);
-	_mkdir(path);
-
-	strcat(path, "\\voice");
-	_mkdir(path);
-	
-	return;
-}
-
 void AutoProcessVoicePack(Settings* settings) {
 	char** voiceType = VoiceType_Create();
 	char** voiceNumber = VoiceNumber_Create();
 
-	printf("正在处理 语音文件及其def\n");
+	printf("正在处理 语音def\n");
 
 	GenVoiceDef(settings, voiceType[Recruit], voiceNumber[0]);
 
@@ -155,4 +95,95 @@ void AutoProcessVoicePack(Settings* settings) {
 	}
 	
 	return;
+}
+
+//--------------------------------------------------------------------------------------------------------以下是新写的处理wav文件
+
+static void CreatVoicePath(Settings* settings, char* path) {
+	strcat(path, "\\Sounds");
+	_mkdir(path);
+
+	strcat(path, "\\Operator");
+	_mkdir(path);
+
+	strcat(path, "\\");
+	strcat(path, settings->agentType.Upper);
+	_mkdir(path);
+
+	strcat(path, "\\");
+	strcat(path, settings->agentName.English);
+	_mkdir(path);
+
+	strcat(path, "\\");
+	strcat(path, settings->voicePath);
+	_mkdir(path);
+	return;
+}
+
+static void CreatAllVoicePath(Settings *settings) {
+	char* path = (char*)malloc(200);
+	strcpy(path, ".\\output");
+	CreatVoicePath(settings, path);
+
+	strcpy(path, ".\\output\\Sound_EN");
+	_mkdir(path);
+	CreatVoicePath(settings, path);
+
+	strcpy(path, ".\\output\\Sound_CN");
+	_mkdir(path);
+	CreatVoicePath(settings, path);
+
+	return;
+}
+
+static char* getOriName(const char* source, char* voiceType, char* voiceNumber) {
+	char* oriName = (char*)malloc(100);
+	sprintf(oriName, ".\\input\\%s\\%s_aa%s.wav", source, voiceType, voiceNumber);
+	return oriName;
+}
+
+static char* getNewName(const char* destination, Settings* settings, char* voiceType, char* voiceNumber) {
+	char* newName = (char*)malloc(500);
+	sprintf(newName, ".\\output\\%sOperator\\%s\\%s\\%s\\%s_%s%s.wav", destination, settings->agentType.Upper, settings->agentName.English, settings->voicePath, voiceType, settings->agentName.English, voiceNumber);
+	return newName;
+}
+
+void ProcessWav(const char* source, const char* destination, Settings* settings, char* voiceType, char* voiceNumber) {
+	char* oldName = getOriName(source, voiceType, voiceNumber);
+	if (_access(oldName, 6) != 0) return;
+	rename(oldName, getNewName(destination, settings, voiceType, voiceNumber));
+	return;
+}
+
+void AutoProcessWav(const char* source, const char* destination, Settings* settings) {
+	char** voiceType = VoiceType_Create();
+	char** voiceNumber = VoiceNumber_Create();
+
+	ProcessWav(source, destination, settings, voiceType[Recruit], voiceNumber[0]);
+
+	ProcessWav(source, destination, settings, voiceType[Die], voiceNumber[0]);
+
+	ProcessWav(source, destination, settings, voiceType[Undraft], voiceNumber[0]);
+
+	for (int i = 0; i <= 4; ++i) {
+		ProcessWav(source, destination, settings, voiceType[Ability], voiceNumber[i]);
+		ProcessWav(source, destination, settings, voiceType[Select], voiceNumber[i]);
+		ProcessWav(source, destination, settings, voiceType[Draft], voiceNumber[i]);
+	}
+
+	return;
+}
+
+
+void AutoProcessVoiceFile(Settings* settings) {
+
+	printf("正在处理 语音文件\n");
+
+	CreatAllVoicePath(settings);
+
+	AutoProcessWav("Sound", "\0", settings);
+
+	AutoProcessWav("Sound_CN", "Sound_CN\\", settings);
+
+	AutoProcessWav("Sound_EN", "Sound_EN\\", settings);
 }

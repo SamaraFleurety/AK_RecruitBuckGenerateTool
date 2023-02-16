@@ -24,6 +24,7 @@ int main() {
 	printf("Version.22-10-11\n");
 	Settings* settings = InitializeSettings();
 	settings->debugOverride = false;
+	AutoProcessVoiceFile(settings);
 	CheckAll(settings);
 
 	if (!settings->debugOverride) MoveTexture(settings);
