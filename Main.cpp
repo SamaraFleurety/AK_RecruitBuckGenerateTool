@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdlib.h>
 #include <stdio.h>
-#include "InputData.h"
+#include "ReadConfig.h"
 #include "Output.h"
 #include "TextureProcess.h"
 #include "VoicePackProcess.h"

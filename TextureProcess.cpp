@@ -9,7 +9,7 @@
 #include "TypeDef.h"
 #include "xmlEndProcess.h"
 
-//--------------------
+#pragma region 工具
 
 void duplicateTextureDelete(char* target) {
 	if (_access(target, 0) == 0) {
@@ -52,13 +52,9 @@ void TextureRename(char* target, const char prefix[], const char prefix2[], cons
 	strcat(target, ".png");
 }*/
 
-//-------------------------
-bool CheckStandPortrait() {
-	int temp = _access(".\\input\\aaStand.png", 6);
-	temp += _access(".\\input\\aaPortrait.png", 6);
-	if (temp == 0) return true;
-	return false;
-}
+#pragma endregion
+
+//建立贴图文件夹
 void CreateTextureFolder(AgentType agentType) {
 	int i = _access(".\\output\\Textures", 0);
 	if (true) {
@@ -119,6 +115,15 @@ void CreateTextureFolder(AgentType agentType) {
 	return;
 }
 
+//检查贴图
+bool CheckStandPortrait() {
+	int temp = _access(".\\input\\aaStand.png", 6);
+	temp += _access(".\\input\\aaPortrait.png", 6);
+	if (temp == 0) return true;
+	return false;
+}
+
+//aa.png是衣服掉落贴图，aaH.png是帽子掉落贴图，都是可有可无的
 void CheckTexture(bool hasHat) {
 	int checkResult = 0;
 	checkResult += _access(".\\input\\aa_bbb_south.png", 6);

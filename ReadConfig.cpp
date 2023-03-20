@@ -4,7 +4,11 @@
 #include <string.h>
 #include <ctype.h>
 #include <io.h>
-#include "InputData.h"
+#include "ReadConfig.h"
+
+/// <summary>
+/// 打开xml文件，从config中读取干员属性
+/// </summary>
 
 FILE* OpenFile(const char seg1[], const char seg2[], const char seg3[], const char name[]) {
 	FILE* target;

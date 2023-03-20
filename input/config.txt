@@ -1,46 +1,44 @@
 >Mode:0<0:正常模式 1:重置贴图
->EnglishName:Beanstalk<
->ChineseName:豆苗<
->AgentType:Vanguard<Caster Defender Guard Medic Sniper Specialist Supporter Vanguard
+>EnglishName:Qiubai<
+>ChineseName:仇白<
+>AgentType:Guard<Caster Defender Guard Medic Sniper Specialist Supporter Vanguard
 >Age:20<
 >BackStory:1 1<
->ChildName:农场主的孩子<
->ChildDesc:出生于哥伦比亚农场主家庭，因为出身的缘故选择了磐蟹饲养作为自己的职业。
-作为瑞柏巴族，豆苗在萨尔贡的同族女性魁梧且彪悍，豆苗生得如此纤细娇小真可谓是奇迹。
+>ChildName:匪首的女儿<
+>ChildDesc:仇白原本是盘踞在寨头上匪首的女儿，在寨头被清剿后她侥幸出逃，一路流浪到了玉门并且修炼了极其出色的剑术。
 <
->AdultName:磐蟹饲养员<
->AdultDesc:专业磐蟹饲养员豆苗，出生于哥伦比亚农场主家庭，向各大公司及平台投递创业企划书未果，最终经介绍前往罗德岛就职。
-现已通过专项测试，作为正式干员为罗德岛提供后勤与特殊侦查作战服务。
+>AdultName:剑客<
+>AdultDesc:仇白，剑客，出生于炎国姜齐城附近的水寨，后因家庭变故离开故乡，常年行走于炎国各地，并无固定居所与工作。
+经调查，仇白曾在不同事件中与多位干员有过接触，后接受罗德岛的合作邀请，为罗德岛在炎国境内的各项事务提供支持。
 <
->BodyType:Thin<Thin Hulk Fat Male Female
+>BodyType:Female<Thin Hulk Fat Male Female
 >EngDesc:
 FIXMEDESC
 <
->ChinDesc:最专业的磐蟹饲养员豆苗，指挥她的磐蟹小队守护前线。
-仔细审查她提交的经费申请，合同里偶尔会藏着小小的陷阱。
+>ChinDesc:行走江湖的炎国剑客仇白，为不平之事停下脚步。
+她出生时正遇一场大雪，这本是一场难得的相逢。
 <
 >Skills:
-Animals:12 2
-Artistic:2 1
-Construction:1 0
-Cooking:5 0
-Crafting:3 0
-Intellectual:9 1
-Medicine:3 0
-Melee:2 0
-Mining:3 0
-Plants:8 0
-Shooting:10 0
-Social:10 1
+Animals:3 0
+Artistic:2 0
+Construction:5 0
+Cooking:4 0
+Crafting:7 1
+Intellectual:8 0
+Medicine:2 0
+Melee:18 2
+Mining:6 0
+Plants:3 0
+Shooting:4 1
+Social:8 0
 <
 >Traits:
-Personal 0
-Kind
-Beauty 1
-NaturalMood 1
-TooSmart
+Personal 2
+Beauty 2
+Tough
+Nimble
 <
->Thought:1 2 3 <
->WeaponName:WeaponName<
->WeaponDesc:WeaponDesc<
->VoiceFolder:VoiceFolder<
+>Thought:-8 0 0 <
+>WeaponName:仇白之剑<
+>WeaponDesc:仇白出剑从不按照所谓剑法，她只在最合适的时机出剑<
+>VoiceFolder:char_4082_qiubai<

@@ -151,6 +151,7 @@ static char* getNewName(const char* destination, Settings* settings, char* voice
 void ProcessWav(const char* source, const char* destination, Settings* settings, char* voiceType, char* voiceNumber) {
 	char* oldName = getOriName(source, voiceType, voiceNumber);
 	if (_access(oldName, 6) != 0) return;
+	//printf("%s\n->\n%s\n", oldName, getNewName(destination, settings, voiceType, voiceNumber));
 	rename(oldName, getNewName(destination, settings, voiceType, voiceNumber));
 	return;
 }
@@ -181,9 +182,9 @@ void AutoProcessVoiceFile(Settings* settings) {
 
 	CreatAllVoicePath(settings);
 
-	AutoProcessWav("Sound", "\0", settings);
+	AutoProcessWav("Sound", "Sounds\\", settings);
 
-	AutoProcessWav("Sound_CN", "Sound_CN\\", settings);
+	AutoProcessWav("Sound_CN", "Sound_CN\\Sounds\\", settings);
 
-	AutoProcessWav("Sound_EN", "Sound_EN\\", settings);
+	AutoProcessWav("Sound_EN", "Sound_EN\\Sounds\\", settings);
 }
