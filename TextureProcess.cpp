@@ -155,6 +155,45 @@ void CheckTexture(bool hasHat) {
 	return;
 }
 
+//从VoicePackProcess直接复制过来的。摆了。
+static char** VoiceNumber_Create() {
+	char** voiceNumber = (char**)malloc(sizeof(char*) * 6);
+	for (int i = 0; i < 6; ++i) {
+		voiceNumber[i] = (char*)malloc(5);
+	}
+	strcpy(voiceNumber[0], "\0");
+	strcpy(voiceNumber[1], "I");
+	strcpy(voiceNumber[2], "II");
+	strcpy(voiceNumber[3], "III");
+	strcpy(voiceNumber[4], "IV");
+	strcpy(voiceNumber[5], "V");
+	return voiceNumber;
+}
+
+void MoveTexture_Fashion(Settings* settings) {
+	char* newName = (char*)malloc(sizeof(char) * 100);
+	if (_access(".\\input\\aaCommon.png", 6) == 0) {
+		TextureRename(newName, "Texture\\Things\\AK_Agents\\", settings->agentType.Upper, settings->agentName.English, "-1", "Common");
+		rename(".\\input\\aaCommon.png", newName);
+		printf("移动 精0立绘");
+	}
+	char** voiceNumber = VoiceNumber_Create();
+	char* oriName = (char*)malloc(sizeof(char) * 100);
+	char* postFix = (char*)malloc(sizeof(char) * 50);
+	for (int i = 0; i <= 5; ++i) {
+		strcpy(oriName, ".\\input\\aaFashion");
+		strcat(oriName, voiceNumber[i]);
+		strcat(oriName, ".png");
+		strcpy(postFix, "Fashion");
+		strcat(postFix, voiceNumber[i]);
+		if (_access(oriName, 6)) {
+			TextureRename(newName, "Texture\\Things\\AK_Agents\\", settings->agentType.Upper, settings->agentName.English, "-1", postFix);
+			rename(oriName, newName);
+			printf("移动 服装立绘%d", i);
+		}
+	}
+}
+
 void MoveTexture(Settings* settings) {
 
 	//char* oldName = (char*)malloc(sizeof(char) * 50);
@@ -220,6 +259,8 @@ void MoveTexture(Settings* settings) {
 		i += rename(".\\input\\aaPortrait.png", newName);
 	}
 	else printf("没有头像和立绘\n");
+
+	MoveTexture_Fashion(settings);
 
 	if (i != 0) {
 		printf("无法正确地移动全部贴图.\n");
