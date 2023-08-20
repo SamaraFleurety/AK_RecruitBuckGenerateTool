@@ -39,7 +39,7 @@ void TextureRename(char* target, const char prefix[], const char prefix2[], cons
 	}
 	strcat(target, postfix);
 	strcat(target, ".png");
-	printf("%s\n", target);
+	//printf("%s\n", target);
 	duplicateTextureDelete(target);
 	return;
 }
@@ -173,9 +173,9 @@ static char** VoiceNumber_Create() {
 void MoveTexture_Fashion(Settings* settings) {
 	char* newName = (char*)malloc(sizeof(char) * 100);
 	if (_access(".\\input\\aaCommon.png", 6) == 0) {
-		TextureRename(newName, "Texture\\Things\\AK_Agents\\", settings->agentType.Upper, settings->agentName.English, "-1", "Common");
+		TextureRename(newName, "Textures\\UI\\Image\\", settings->agentType.Upper, settings->agentName.English, "-1", "Common");
 		rename(".\\input\\aaCommon.png", newName);
-		printf("移动 精0立绘");
+		printf("移动 精0立绘\n");
 	}
 	char** voiceNumber = VoiceNumber_Create();
 	char* oriName = (char*)malloc(sizeof(char) * 100);
@@ -186,10 +186,10 @@ void MoveTexture_Fashion(Settings* settings) {
 		strcat(oriName, ".png");
 		strcpy(postFix, "Fashion");
 		strcat(postFix, voiceNumber[i]);
-		if (_access(oriName, 6)) {
-			TextureRename(newName, "Texture\\Things\\AK_Agents\\", settings->agentType.Upper, settings->agentName.English, "-1", postFix);
-			rename(oriName, newName);
-			printf("移动 服装立绘%d", i);
+		if (_access(oriName, 6) == 0) {
+			TextureRename(newName, "Textures\\UI\\Image\\", settings->agentType.Upper, settings->agentName.English, "-1", postFix);
+			int j = rename(oriName, newName);
+			printf("移动 服装立绘%d\n", i);
 		}
 	}
 }
