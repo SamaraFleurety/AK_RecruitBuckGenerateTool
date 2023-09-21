@@ -181,10 +181,10 @@ void FileProcess(Settings* settings) {
 
 	printf("处理完成.\n");
 	
-	printf("正在处理 ApparelDef.xml 的翻译文件\n");
+	/*printf("正在处理 ApparelDef.xml 的翻译文件\n");
 		printf("\t正在处理 干员:%s\n", settings->agentName.English);
 		fprintf(settings->outputFile.outputFileTranslate[f_apparel],
-			"\t<AK_Apparel_%s.label>%s's Apparel</AK_Apparel_%s.label>\n\n", settings->agentName.English, settings->agentName.English, settings->agentName.English);
+			"\t<AK_Apparel_%s.label>%s's Apparel</AK_Apparel_%s.label>\n\n", settings->agentName.English, settings->agentName.English, settings->agentName.English);*/
 		
 	printf("处理完成.\n");
 
@@ -211,9 +211,9 @@ void FileProcess(Settings* settings) {
 			"\t</ThingDef>\n\n"
 			, settings->agentName.English, settings->agentName.Chinese, UTF8Type.hat, temp, settings->agentName.English);
 
-		fprintf(settings->outputFile.outputFileTranslate[f_hat],
+		/*fprintf(settings->outputFile.outputFileTranslate[f_hat],
 			"\t<AK_Hat_%s.label>%s's Hat</AK_Hat_%s.label>\n\n"
-			, settings->agentName.English, settings->agentName.English, settings->agentName.English);
+			, settings->agentName.English, settings->agentName.English, settings->agentName.English);*/
 		printf("处理完成.\n");
 	}
 
@@ -231,9 +231,9 @@ void FileProcess(Settings* settings) {
 			"\t</ThingDef>\n\n", settings->agentType.Upper, settings->agentName.English, settings->weaponName, settings->agentType.Upper, settings->agentName.English, settings->weaponDesc);
 	printf("处理完成.\n");
 
-	printf("正在处理 WeaponDef.xml 的翻译文件\n");
+	/*printf("正在处理 WeaponDef.xml 的翻译文件\n");
 		fprintf(settings->outputFile.outputFileTranslate[f_weapon],
-			"\t<AK_Weapon_%s.label>%s's Weapon</AK_Weapon_%s.label>\n\n", settings->agentName.English, settings->agentName.English, settings->agentName.English);
+			"\t<AK_Weapon_%s.label>%s's Weapon</AK_Weapon_%s.label>\n\n", settings->agentName.English, settings->agentName.English, settings->agentName.English);*/
 	printf("处理完成.\n");
 	
 //-----发型-------------------------------------------------
@@ -246,10 +246,10 @@ void FileProcess(Settings* settings) {
 			"\t</HairDef>\n\n", settings->agentName.English, settings->agentName.Chinese, UTF8Type.hair, settings->agentType.Upper, settings->agentName.English);
 	printf("处理完成.\n");
 		
-	printf("正在处理 HairDef.xml 的翻译文件\n");
+	/*printf("正在处理 HairDef.xml 的翻译文件\n");
 		printf("\t正在处理 干员:%s\n", settings->agentName.English);
 		fprintf(settings->outputFile.outputFileTranslate[f_hair],
-			"\t<AK_Hair_%s.label>%s's Hair</AK_Hair_%s.label>\n\n", settings->agentName.English, settings->agentName.English, settings->agentName.English);
+			"\t<AK_Hair_%s.label>%s's Hair</AK_Hair_%s.label>\n\n", settings->agentName.English, settings->agentName.English, settings->agentName.English);*/
 	printf("处理完成.\n");
 
 	//背景故事

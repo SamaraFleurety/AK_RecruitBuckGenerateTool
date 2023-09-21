@@ -167,22 +167,22 @@ Settings* InitializeSettings() {
 	settings->outputFile.outputFileTranslate[f_operator] = OpenFile(".\\output\\Languages\\ChineseSimplified (ºÚÃÂ÷–Œƒ)\\DefInjected\\AK_DLL.OperatorDef\\RecruitTranslate_", settings->agentType.Upper, ".xml", "Operator∑≠“Î");
 	//∑˛◊∞
 	settings->outputFile.outputFile[f_apparel] = OpenFile(".\\output\\Defs\\ThingsDefs\\ThingsDefs_Apparel\\Apparel_", settings->agentType.Upper, ".xml", "ApparelDef");
-	settings->outputFile.outputFileTranslate[f_apparel] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Things\\ApparelTranslate_", settings->agentType.Upper, ".xml", "ApparelDef∑≠“Î");
+	//settings->outputFile.outputFileTranslate[f_apparel] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Things\\ApparelTranslate_", settings->agentType.Upper, ".xml", "ApparelDef∑≠“Î");
 	//Œ‰∆˜
 	settings->outputFile.outputFile[f_weapon] = OpenFile(".\\output\\Defs\\ThingsDefs\\ThingsDefs_Weapon\\Weapon_", settings->agentType.Upper, ".xml", "WeaponDef");
-	settings->outputFile.outputFileTranslate[f_weapon] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Things\\WeaponTranslate_", settings->agentType.Upper, ".xml", "WeaponDef∑≠“Î");
+	//settings->outputFile.outputFileTranslate[f_weapon] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Things\\WeaponTranslate_", settings->agentType.Upper, ".xml", "WeaponDef∑≠“Î");
 	//Õ∑∑¢
 	settings->outputFile.outputFile[f_hair] = OpenFile(".\\output\\Defs\\HairDefs\\Hair_", settings->agentType.Upper, ".xml", "HairDef");
-	settings->outputFile.outputFileTranslate[f_hair] = OpenFile(".\\output\\Languages\\English\\DefInjected\\HairDef\\HairTranslate_", settings->agentType.Upper, ".xml", "HairDef∑≠“Î");
+	//settings->outputFile.outputFileTranslate[f_hair] = OpenFile(".\\output\\Languages\\English\\DefInjected\\HairDef\\HairTranslate_", settings->agentType.Upper, ".xml", "HairDef∑≠“Î");
 	//Ãÿ–‘
 	settings->outputFile.outputFile[f_trait] = OpenFile(".\\output\\Defs\\TraitsDefs\\Trait_", settings->agentType.Upper, ".xml", "TraitDef");
-	settings->outputFile.outputFileTranslate[f_trait] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Trait\\_", settings->agentType.Upper, ".xml", "TraitDef∑≠“Î");
+	//settings->outputFile.outputFileTranslate[f_trait] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Trait\\_", settings->agentType.Upper, ".xml", "TraitDef∑≠“Î");
 	//Ãÿ–‘->œÎ∑®
 	settings->outputFile.outputFile[f_thoughts] = OpenFile(".\\output\\Defs\\TraitsDefs\\Thought\\Thought_", settings->agentType.Upper, ".xml", "ThoughtDef");
-	settings->outputFile.outputFileTranslate[f_thoughts] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Trait\\Thought\\_", settings->agentType.Upper, ".xml", "ThoughtDef∑≠“Î");
+	//settings->outputFile.outputFileTranslate[f_thoughts] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Trait\\Thought\\_", settings->agentType.Upper, ".xml", "ThoughtDef∑≠“Î");
 	//±≥æ∞π  ¬
 	settings->outputFile.outputFile[f_backstory] = OpenFile(".\\output\\Defs\\BackStory\\Story_", settings->agentType.Upper, ".xml", "BSDef");
-	settings->outputFile.outputFileTranslate[f_backstory] = OpenFile(".\\output\\Languages\\English\\DefInjected\\StoriesRetold\\_", settings->agentType.Upper, ".xml", "BSDef∑≠“Î");
+	//settings->outputFile.outputFileTranslate[f_backstory] = OpenFile(".\\output\\Languages\\English\\DefInjected\\StoriesRetold\\_", settings->agentType.Upper, ".xml", "BSDef∑≠“Î");
 	//”Ô“Ù
 	settings->outputFile.outputFile[f_voice] = OpenFile(".\\output\\Defs\\VoiceDef\\Voice_", settings->agentType.Upper, ".xml", "VoiceDef");
 
@@ -191,7 +191,7 @@ Settings* InitializeSettings() {
 	settings->has[hatDropped] = _access(".\\input\\aaH.png", 6) == 0 ? true : false;
 	if (settings->has[hat]) {
 		settings->outputFile.outputFile[f_hat] = OpenFile(".\\output\\Defs\\ThingsDefs\\ThingsDefs_Apparel\\Apparel_Hat.xml", "", "", "HatDef");
-		settings->outputFile.outputFileTranslate[f_hat] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Things\\ApparelTranslate_Hat.xml", "", "", "HatDef∑≠“Î");
+		//settings->outputFile.outputFileTranslate[f_hat] = OpenFile(".\\output\\Languages\\English\\DefInjected\\Things\\ApparelTranslate_Hat.xml", "", "", "HatDef∑≠“Î");
 	}
 
 	return settings;

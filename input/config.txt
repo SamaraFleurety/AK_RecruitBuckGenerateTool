@@ -1,41 +1,38 @@
->Mode:1<0:正常模式 1:重置贴图
->EnglishName:Mudrock<
->ChineseName:泥岩<
->AgentType:Defender<Caster Defender Guard Medic Sniper Specialist Supporter Vanguard OtherLeader
+>Mode:0<0:正常模式 1:重置贴图
+>EnglishName:CandleKnight<
+>ChineseName:烛骑士薇薇安娜<
+>AgentType:OtherLeader<Caster Defender Guard Medic Sniper Specialist Supporter Vanguard OtherLeader
 >Age:20<
 >BackStory:1 1<
->ChildName:伦蒂尼姆贫民区的孩子<
->ChildDesc:{PAWN_nameDef}从小混迹于伦蒂尼姆肮脏混乱的贫民区，从小混迹于斗殴的街头给她带来了很强的战斗本领。<
->AdultName:格拉斯哥帮小头目<
->AdultDesc:格拉斯哥帮混迹于维多利亚的贫民区，最开始本身是由摩根和因陀罗带领的街头组织。她们霸占了一方的地盘，为了生存过着混乱的生活，直到推进之王出现在了她们面前。<
+>ChildName:贵族私生子<
+>ChildDesc:{PAWN_nameDef}出生于莱塔尼亚的某个贵族家庭，真实身份是莱塔尼亚某位贵族的私生女。为了不让家族蒙羞，{PAWN_nameDef}自出生起便常年被关在高塔之中，只能通过阅读诗集和小说来了解外面的世界，也正是在这个时候，{PAWN_nameDef}通过骑士小说对卡西米尔的骑士产生了憧憬。<
+>AdultName:烛骑士<
+>AdultDesc:{PAWN_nameDef}被流放到卡西米尔，由某位征战骑士领养，自此实现了成为骑士的梦想，之后成为了大骑士，在大骑士领获得了极高的地位。但却也逐渐发现卡西米尔骑士文化的内在已经被资本腐蚀。<
 >BodyType:Female<Thin Hulk Fat Male Female
 >EngDesc:
 FIXMEDESC
 <
->ChinDesc:格拉斯哥帮成员因陀罗，很高兴能够又一次痛揍不识趣的家伙。最擅长用拳头说话。
+>ChinDesc:烛骑士薇薇安娜·德罗斯特，言语无法形容她的美好，只有她映照光辉的眼眸令人沉醉。今夜，金盏花为她盛开。
 <
 >Skills:
-Animals:8 0
-Artistic:2 0
-Construction:5 0
-Cooking:6 0
-Crafting:5 1
-Intellectual:7 0
-Medicine:2 0
-Melee:11 2
-Mining:3 0
-Plants:4 0
-Shooting:4 0
-Social:8 0
+Animals:2 0
+Artistic:12 1
+Construction:1 0
+Cooking:3 0
+Crafting:7 0
+Intellectual:12 1
+Medicine:1 0
+Melee:9 0
+Mining:0 0
+Plants:1 0
+Shooting:10 0
+Social:11 0
 <
 >Traits:
-Personal 0
-Beauty 1
-Abrasive
-Brawler
-Nerves 1
+Personal 3
+Kind
 <
->Thought:0 0 0 <
->WeaponName:因陀罗的指虎<
->WeaponDesc:因陀罗的指虎，下置了一个尖刀，可以刺或捅。<
->VoiceFolder:char_155_tiger<
+>Thought:-12 0 0 <
+>WeaponName:火烛银花<
+>WeaponDesc:烛骑士的长剑，装饰华丽，刻满了美丽的花纹，比起战斗用的武器更像是装饰用的艺术品，而烛骑士也确实是这么用的<
+>VoiceFolder:char_0003_candleknight<

@@ -64,8 +64,8 @@ typedef struct AgentType_struct {
 }AgentType;
 
 typedef struct AgentName_struct {
-	char English[20];
-	char Chinese[20];
+	char English[50];
+	char Chinese[50];
 }AgentName;
 
 typedef struct BodyType_struct {

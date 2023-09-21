@@ -72,8 +72,8 @@ void FileEndCheck_All(Settings* settings) {
 		printf("检测%d号文件尾 ", i);
 		FileEndCheck(settings->outputFile.outputFile[i]);
 		if (i == f_voice) continue; //voiceDef不需要翻译
-		printf("检测%d号翻译文件尾 ", i);
-		FileEndCheckTranslate(settings->outputFile.outputFileTranslate[i]);
+		//printf("检测%d号翻译文件尾 ", i);
+		//FileEndCheckTranslate(settings->outputFile.outputFileTranslate[i]);
 	}
 }
 
@@ -83,7 +83,8 @@ void FileEndRemove_All(Settings* settings) {
 	for (; i < fileCnt; ++i) {
 		FileEndRemove(settings->outputFile.outputFile[i]);
 		if (i == f_voice) continue; //voiceDef不需要翻译
-		FileEndRemoveTranslate(settings->outputFile.outputFileTranslate[i]);
+		if (i == f_operator) FileEndRemoveTranslate(settings->outputFile.outputFileTranslate[i]);
+		//FileEndRemoveTranslate(settings->outputFile.outputFileTranslate[i]);
 	}
 }
 
@@ -93,6 +94,6 @@ void FileEndRestore_All(Settings* settings) {
 	for (; i < fileCnt; ++i) {
 		FileEndRestore(settings->outputFile.outputFile[i]);
 		if (i == f_voice) continue; //voiceDef不需要翻译
-		FileEndRestoreTranslate(settings->outputFile.outputFileTranslate[i]);
+		if (i == f_operator) FileEndRestoreTranslate(settings->outputFile.outputFileTranslate[i]);
 	}
 }
