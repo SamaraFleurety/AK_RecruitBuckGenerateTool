@@ -1,38 +1,39 @@
 >Mode:0<0:正常模式 1:重置贴图
 >EnglishName:CandleKnight<
->ChineseName:烛骑士薇薇安娜<
->AgentType:OtherLeader<Caster Defender Guard Medic Sniper Specialist Supporter Vanguard OtherLeader
+>ChineseName:浊心斯卡蒂<
+>AgentType:Supporter<Caster Defender Guard Medic Sniper Specialist Supporter Vanguard OtherLeader
 >Age:20<
 >BackStory:1 1<
->ChildName:贵族私生子<
->ChildDesc:{PAWN_nameDef}出生于莱塔尼亚的某个贵族家庭，真实身份是莱塔尼亚某位贵族的私生女。为了不让家族蒙羞，{PAWN_nameDef}自出生起便常年被关在高塔之中，只能通过阅读诗集和小说来了解外面的世界，也正是在这个时候，{PAWN_nameDef}通过骑士小说对卡西米尔的骑士产生了憧憬。<
->AdultName:烛骑士<
->AdultDesc:{PAWN_nameDef}被流放到卡西米尔，由某位征战骑士领养，自此实现了成为骑士的梦想，之后成为了大骑士，在大骑士领获得了极高的地位。但却也逐渐发现卡西米尔骑士文化的内在已经被资本腐蚀。<
+>ChildName:错误<
+>ChildDesc:错误错误错误错误错误错误错误错误错误错误错误错误错误错误错误错误错误错误错误错误错误错误错误错误错误错误错误错误<
+>AdultName:Ishar-mla<
+>AdultDesc:她不再歌唱，她为大群发声。<
 >BodyType:Female<Thin Hulk Fat Male Female
 >EngDesc:
 FIXMEDESC
 <
->ChinDesc:烛骑士薇薇安娜·德罗斯特，言语无法形容她的美好，只有她映照光辉的眼眸令人沉醉。今夜，金盏花为她盛开。
+>ChinDesc:浊心斯卡蒂，一位让你熟悉又陌生的访客。
+你愿意接纳它吗？
 <
 >Skills:
-Animals:2 0
-Artistic:12 1
-Construction:1 0
-Cooking:3 0
-Crafting:7 0
-Intellectual:12 1
-Medicine:1 0
-Melee:9 0
+Animals:- 0
+Artistic:- 0
+Construction:0 0
+Cooking:0 0
+Crafting:0 0
+Intellectual:20 2
+Medicine:0 0
+Melee:20 0
 Mining:0 0
-Plants:1 0
-Shooting:10 0
-Social:11 0
+Plants:0 0
+Shooting:20 0
+Social:20 2
 <
 >Traits:
-Personal 3
+Personal 2
 Kind
 <
->Thought:-12 0 0 <
->WeaponName:火烛银花<
->WeaponDesc:烛骑士的长剑，装饰华丽，刻满了美丽的花纹，比起战斗用的武器更像是装饰用的艺术品，而烛骑士也确实是这么用的<
->VoiceFolder:char_0003_candleknight<
+>Thought:20 0 0 <
+>WeaponName:斯卡蒂的法杖<
+>WeaponDesc:她的剑承载着她的过去，她手中的法杖吟唱着大群的歌谣。这些剩下的碎片都是她的过去。但哪怕只是些碎片，也能证明现在的她不是一个空壳。<
+>VoiceFolder:char_1012_skadi2<

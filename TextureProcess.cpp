@@ -70,9 +70,12 @@ void CreateTextureFolder(AgentType agentType) {
 		strcat(temp, agentType.Upper);
 		i += _mkdir(temp);
 
-		strcpy(temp, generalPath);
-		strcat(temp, "\\AK_Agents\\HatAccessory");
-		i += _mkdir(temp);
+		bool enableHatFeature = false;
+		if (enableHatFeature) {
+			strcpy(temp, generalPath);
+			strcat(temp, "\\AK_Agents\\HatAccessory");
+			i += _mkdir(temp);
+		}
 
 		i += _mkdir(".\\output\\Textures\\Things\\AK_Agents\\Weapon");
 		strcpy(temp, generalPath);

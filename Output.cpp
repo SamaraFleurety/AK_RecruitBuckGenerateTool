@@ -59,8 +59,14 @@ void NewTraitGenerate(FILE *traitFP, FILE *thoughtFP, int degree, int *thought, 
 		"\t</TraitDef>\n\n");
 	if (thought[degree - 1] != 0) {
 		fprintf(thoughtFP, "\t<ThoughtDef ParentName = \"AK_Thought_Permanent\">\n"
-			"\t\t<defName>AK_Thought_Trait_%s</defName>\n"
-			"\t\t<requiredTraits><li>AK_Trait_%s</li></requiredTraits>\n"
+			"\t\t<defName>AK_Thought_Trait_%s", name);
+		numToEnglish(thoughtFP, degree);
+		fprintf(thoughtFP,
+			"</defName>\n"
+			"\t\t<requiredTraits><li>AK_Trait_%s", name);
+		numToEnglish(thoughtFP, degree);
+		fprintf(thoughtFP,
+			"</li></requiredTraits>\n"
 			"\t\t<stages>\n"
 			"\t\t\t<li>\n"
 			"\t\t\t\t<label></label>\n"
@@ -68,7 +74,7 @@ void NewTraitGenerate(FILE *traitFP, FILE *thoughtFP, int degree, int *thought, 
 			"\t\t\t\t<baseMoodEffect>%d</baseMoodEffect>\n"
 			"\t\t\t</li>\n"
 			"\t\t</stages>\n"
-			"\t</ThoughtDef>\n\n", name, name, thought[degree - 1]);
+			"\t</ThoughtDef>\n\n", thought[degree - 1]);
 	}
 	NewTraitGenerate(traitFP, thoughtFP, degree - 1, thought, name);
 }

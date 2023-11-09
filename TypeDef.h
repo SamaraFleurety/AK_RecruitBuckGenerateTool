@@ -110,6 +110,7 @@ typedef struct Story_struct {
 
 typedef struct Settings_struct {
 	bool debugOverride = false;
+	bool enableHatFeature = false;
 	int generateMode;
 	AgentName agentName;
 	AgentType agentType;
