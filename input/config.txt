@@ -34,5 +34,5 @@ Kind
 >Thought:0 0 0 <
 >WeaponName:惊喜派对<
 >WeaponDesc:明日奈使用的突击步枪。虽然这个华丽的名字不太适合潜行任务，但她却并不是很在意。<
->HasVoice:1< 1有 0无
+>HasVoice:0< 1有 0无
 >VoiceFolder:char_0001_asuna<
