@@ -21,7 +21,7 @@ void CheckAll(Settings* settings) {
 }
 
 int main() {
-	printf("Version.22-10-11\n");
+	printf("Version.24-03-15\n");
 	Settings* settings = InitializeSettings();
 	settings->debugOverride = false;
 	settings->enableHatFeature = false;

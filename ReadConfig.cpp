@@ -82,7 +82,7 @@ void readConfig(Settings* settings) {
 
 	errFlag += fscanf(settings->outputFile.configFile, ">Age:%d<\n", &settings->age);
 
-	errFlag += fscanf(settings->outputFile.configFile, ">BackStory:%d %d<\n", &settings->story.backstory[0], &settings->story.backstory[1]);
+	errFlag += fscanf(settings->outputFile.configFile, ">BackStory:%d %d<%[^>]", &settings->story.backstory[0], &settings->story.backstory[1], temp);
 	errFlag += fscanf(settings->outputFile.configFile, ">ChildName:%[^<]<\n", settings->story.childName);
 	errFlag += fscanf(settings->outputFile.configFile, ">ChildDesc:%[^<]<\n", settings->story.childDesc);
 	errFlag += fscanf(settings->outputFile.configFile, ">AdultName:%[^<]<\n", settings->story.adultName);
@@ -124,6 +124,7 @@ void readConfig(Settings* settings) {
 	errFlag += fscanf(settings->outputFile.configFile, ">WeaponDesc:%[^<]<\n", settings->weaponDesc);
 	RemoveTrailingSpace(settings->weaponName);
 	RemoveTrailingSpace(settings->weaponDesc);
+	errFlag += fscanf(settings->outputFile.configFile, ">HasVoice:%d<%[^>]", &settings->hasVoice, temp);
 	errFlag += fscanf(settings->outputFile.configFile, ">VoiceFolder:%[^<]<\n", settings->voicePath);
 	printf("%d\n%d\n%d\n", settings->thought[0], settings->thought[1], settings->thought[2]);
 	printf("%s\n%s\n%s\n", settings->weaponDesc, settings->weaponName, settings->voicePath);

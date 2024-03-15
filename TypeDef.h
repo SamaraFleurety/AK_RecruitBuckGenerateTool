@@ -126,6 +126,7 @@ typedef struct Settings_struct {
 	int* thought;
 	char weaponName[50];
 	char weaponDesc[500];
+	int hasVoice;
 	char voicePath[200];
 }Settings;
 

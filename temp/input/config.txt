@@ -3,14 +3,14 @@
 >ChineseName:一之濑明日奈<
 >AgentType:Millennium<Caster Defender Guard Medic Sniper Specialist Supporter Vanguard OtherLeader
 >Age:17<
->BackStory:1 0< 1有 0无
->ChildName:CC 01<
->ChildDesc:明日奈是千年科技学院CC秘密组织的01号特工，通常会以女仆的打扮示人，性格飘忽不定，不受管束，但是出乎意料的总是能完成任务。<
+>BackStory:1 0<
+>ChildName:C&C 01<
+>ChildDesc:明日奈是千年科技学院C&C秘密组织的01号特工，通常会以女仆的打扮示人，性格飘忽不定，不受管束，但是出乎意料的总是能完成任务。<
 >AdultName:温德米尔公爵<
 >AdultDesc:作为当代温德米尔公爵，安费莉丝拥有自己的封地丽茵卡登和大量可供调遣的战舰和军人，在领地内说一不二的威权以及相当可观的财富。<
 >BodyType:Thin<Thin Hulk Fat Male Female
 >EngDesc:FIXMEDESC<
->ChinDesc:千年科学学园所属，秘密组织【CC】的特工一之濑明日奈。代号【01】，是凭借卓越的野性直觉来克服重重难关的老手。<
+>ChinDesc:千年科学学园所属，秘密组织【C＆C】的特工一之濑明日奈。代号【01】，是凭借卓越的野性直觉来克服重重难关的老手。<
 >Skills:
 Animals:2 0
 Artistic:4 0
@@ -34,5 +34,4 @@ Kind
 >Thought:0 0 0 <
 >WeaponName:惊喜派对<
 >WeaponDesc:明日奈使用的突击步枪。虽然这个华丽的名字不太适合潜行任务，但她却并不是很在意。<
->HasVoice:1< 1有 0无
 >VoiceFolder:char_0001_asuna<

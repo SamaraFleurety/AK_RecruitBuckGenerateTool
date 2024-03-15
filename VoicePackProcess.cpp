@@ -178,6 +178,7 @@ void AutoProcessWav(const char* source, const char* destination, Settings* setti
 
 void AutoProcessVoiceFile(Settings* settings) {
 
+	if (settings->hasVoice != 0) printf("无语音文件");
 	printf("正在处理 语音文件\n");
 
 	CreatAllVoicePath(settings);
