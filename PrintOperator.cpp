@@ -70,7 +70,7 @@ void printOperator(Settings* settings) {
 
 		printf("Traits:\n");
 		printTraits(settings->traitsRoot->node);
-		printf("语音（1有0无）:%d", settings->hasVoice);
+		printf("语音（1有0无）:%d\n", settings->hasVoice);
 		printf("是否确认开始新增此干员，Y/N\n");
 		scanf("%c", &input);
 		if (input != 'Y' && input != 'y') {

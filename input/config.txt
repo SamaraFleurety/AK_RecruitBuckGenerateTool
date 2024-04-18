@@ -1,38 +1,37 @@
 >Mode:0<0:正常模式 1:重置贴图
->EnglishName:Asuna<
->ChineseName:一之濑明日奈<
->AgentType:Millennium<Caster Defender Guard Medic Sniper Specialist Supporter Vanguard OtherLeader
->Age:17<
->BackStory:1 0< 1有 0无
->ChildName:CC 01<
->ChildDesc:明日奈是千年科技学院CC秘密组织的01号特工，通常会以女仆的打扮示人，性格飘忽不定，不受管束，但是出乎意料的总是能完成任务。<
->AdultName:温德米尔公爵<
->AdultDesc:作为当代温德米尔公爵，安费莉丝拥有自己的封地丽茵卡登和大量可供调遣的战舰和军人，在领地内说一不二的威权以及相当可观的财富。<
+>EnglishName:Midori<
+>ChineseName:彩羽绿<
+>AgentType:Millennium<Millennium Trinity Abydos Hyakkiyako SRT Specialist Supporter Vanguard OtherLeader
+>Age:15<
+>BackStory:1 0<
+>ChildName:游戏开发者绿<
+>ChildDesc:{PAWN_nameDef}是游戏开发部的插画师，因为看到了柚子的游戏对游戏产生了浓重的兴趣因而和双胞胎姐姐桃井加入了游戏开发部；虽然对游戏有很大的爱好，但是{PAWN_nameDef}的游戏打的很菜，而且经常光顾着玩游戏而忘了游戏开发的工作。<
+>AdultName:天童爱丽丝<
+>AdultDesc:在废墟发现的来历不明的少女。包含年龄在内，所有情报都无法推断。现在跟着绿和桃井玩游戏，已经变成重度游戏狂热者了。<
 >BodyType:Thin<Thin Hulk Fat Male Female
 >EngDesc:FIXMEDESC<
->ChinDesc:千年科学学园所属，秘密组织【CC】的特工一之濑明日奈。代号【01】，是凭借卓越的野性直觉来克服重重难关的老手。<
+>ChinDesc:千年科学学园游戏开发部的原画家。和双胞胎姐姐桃井一同在游戏开发部开发真正的游戏，虽然性格腼腆的{PAWN_pronoun}与开朗的姐姐相性不好，但对游戏热情的意气相投使{PAWN_pronoun}们现在的关系变得非常好。<
 >Skills:
-Animals:2 0
-Artistic:4 0
+Animals:4 0
+Artistic:12 2
 Construction:4 0
-Cooking:9 0
-Crafting:7 2
-Intellectual:6 0
-Medicine:4 0
+Cooking:4 0
+Crafting:5 1
+Intellectual:8 2
+Medicine:3 0
 Melee:10 0
 Mining:0 0
-Plants:3 0
-Shooting:14 2
-Social:10 2
+Plants:5 0
+Shooting:15 2
+Social:6 0
 <
 >Traits:
 Personal 2
 Beauty 2
-NaturalMood 2
 Kind
 <
->Thought:0 0 0 <
->WeaponName:惊喜派对<
->WeaponDesc:明日奈使用的突击步枪。虽然这个华丽的名字不太适合潜行任务，但她却并不是很在意。<
+>Thought:4 0 0 <
+>WeaponName:清爽灵感<
+>WeaponDesc:{PAWN_nameDef}使用的狙击步枪。\n挂着最重要的姐姐送的装饰，在困顿的时候拨弄拨弄它，灵感似乎就涌上来了。<
 >HasVoice:0< 1有 0无
->VoiceFolder:char_0001_asuna<
+>VoiceFolder:char_0008_midori<

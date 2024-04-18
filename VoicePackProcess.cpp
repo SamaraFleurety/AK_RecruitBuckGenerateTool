@@ -71,6 +71,8 @@ static int GenVoiceDef(Settings* settings, char* voiceType, char* voiceNumberStr
 }
 
 void AutoProcessVoicePack(Settings* settings) {
+	if (settings->hasVoice == 0) return;
+
 	char** voiceType = VoiceType_Create();
 	char** voiceNumber = VoiceNumber_Create();
 
@@ -178,7 +180,10 @@ void AutoProcessWav(const char* source, const char* destination, Settings* setti
 
 void AutoProcessVoiceFile(Settings* settings) {
 
-	if (settings->hasVoice != 0) printf("无语音文件\n");
+	if (settings->hasVoice == 0) {
+		printf("无语音文件\n");
+		return;
+	}
 	printf("正在处理 语音文件\n");
 
 	CreatAllVoicePath(settings);
